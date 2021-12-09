@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMeMo">
         <activity
+            android:name=".Credits"
+            android:exported="true" />
+        <activity
+            android:name=".Support"
+            android:exported="true" />
+        <activity
             android:name=".HowToPlayReaction"
             android:exported="true"/>
         <activity
@@ -47,7 +53,12 @@
             android:exported="true" />
         <activity
             android:name=".Settings"
-            android:exported="true" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".GameChoice"
             android:exported="true" >
