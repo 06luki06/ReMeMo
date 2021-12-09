@@ -43,4 +43,9 @@
     <string name="bT_mail_markus">markus.almer@edu.fh-joanneum.at</string>
     <string name="bt_mail_vanessa">vanessa.riedl@edu.fh-joanneum.at</string>
     <string name="bT_mail_lukas">lukas.riegler@edu.fh-joanneum.at</string>
+    <string name="tV_credits_headline">Credits</string>
+    <string name="tV_credits_markus">Almer Markus</string>
+    <string name="tV_credits_vanessa">Riedl Vanessa</string>
+    <string name="tV_credits_lukas">Riegler Lukas</string>
+    <string name="tV_credits_CR">© 2021 | FH Joanneum | IMA</string>
 </resources>
