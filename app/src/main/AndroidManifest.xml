@@ -10,14 +10,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMeMo">
         <activity
+            android:name=".HowToPlayReaction"
+            android:exported="true"/>
+        <activity
+            android:name=".HowToPlayMotivity"
+            android:exported="true"/>
+        <activity
+            android:name=".HowToPlayMemory"
+            android:exported="true"/>
+        <activity
             android:name=".ReactionGame"
-            android:exported="true" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".MemoryGame"
-            android:exported="true" />
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".MotivityGame"
-            android:exported="true"/>
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".HighscoreGames"
             android:exported="true" />
@@ -29,7 +53,6 @@
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
@@ -38,10 +61,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

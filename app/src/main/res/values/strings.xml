@@ -31,4 +31,11 @@
     <string name="cD_IV_settings_volume">Volume</string>
     <string name="cD_iB_settings_GermanyFlag">Flag Of Germany</string>
     <string name="cD_iB_settings_FlagOfGreatBritain">Flag Of Great Britain</string>
+    <string name="tV_howToPlay_headline">How To Play</string>
+    <string name="tV_howToPlay_reaction">Reaction</string>
+    <string name="tV_howToPlay_Reaction_Instruction">Try to tap on the lightning button as fast as you can.</string>
+    <string name="tV_howToPlay_motivity">Motivity</string>
+    <string name="tV_howToPlay_Motivity_Instruction">solve the calculuses</string>
+    <string name="tV_howToPlay_Memory">Memory</string>
+    <string name="tV_howToPlay_Memory_Instruction">look at the buttons which are lightning. After the demo, click on the buttons in the right order.</string>
 </resources>
