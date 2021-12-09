@@ -29,14 +29,14 @@
     <string name="bt_lv5">Level 5</string>
     <string name="tV_motivity_game">Motivity</string>
     <string name="tV_reaction_game">Reaction</string>
-    <string name="cD_IV_settings_volume">Volume</string>
-    <string name="cD_iB_settings_GermanyFlag">Flag Of Germany</string>
-    <string name="cD_iB_settings_FlagOfGreatBritain">Flag Of Great Britain</string>
-    <string name="tV_howToPlay_headline">How To Play</string>
+    <string name="cD_IV_settings_volume">Lautstärke</string>
+    <string name="cD_iB_settings_GermanyFlag">Flagge Deutschland</string>
+    <string name="cD_iB_settings_FlagOfGreatBritain">Flagge Großbritannien</string>
+    <string name="tV_howToPlay_headline">Spielanleitung</string>
     <string name="tV_howToPlay_reaction">Reaction</string>
-    <string name="tV_howToPlay_Reaction_Instruction">Try to tap on the lightning button as fast as you can.</string>
+    <string name="tV_howToPlay_Reaction_Instruction">Versuche so schnell wie möglich den leuchteden Knopf zu drücken..</string>
     <string name="tV_howToPlay_motivity">Motivity</string>
-    <string name="tV_howToPlay_Motivity_Instruction">solve the calculuses</string>
+    <string name="tV_howToPlay_Motivity_Instruction">Löse die Rechnungen</string>
     <string name="tV_howToPlay_Memory">Memory</string>
-    <string name="tV_howToPlay_Memory_Instruction">look at the buttons which are lightning. After the demo, click on the buttons in the right order.</string>
+    <string name="tV_howToPlay_Memory_Instruction">Schau dir die Reihenfolge der leuchtenden Knöpfe an. Drücke die Knöpfe in der richtigen Reihenfolge.</string>
 </resources>
