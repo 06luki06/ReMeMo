@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         val intent: Intent = Intent(this, GameChoice::class.java)
 
-
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {

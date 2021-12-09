@@ -10,4 +10,26 @@
     <string name="bt_Memory">Gedächtnis</string>
     <string name="bt_Reaction">Reaktion</string>
     <string name="bt_Motivity">Motorik</string>
+    <string name="tV_headline_highscore_games">Highscore Spiele</string>
+    <string name="tV_highscore_games_infoTxt">Wähle ein Spiel aus um deinen Highscore in jedem Level zu sehen</string>
+    <string name="tV_headline_settings">Einstellungen</string>
+    <string name="tV_volume">Lautstärke</string>
+    <string name="bt_volume_down">-</string>
+    <string name="bt_volume_up">+</string>
+    <string name="tV_language">Sprache</string>
+    <string name="bt_reset">Zurücksetzen</string>
+    <string name="bt_credits">Credits</string>
+    <string name="bt_support">Support</string>
+    <string name="bt_howToPlay">i</string>
+    <string name="tV_memory_game">Memory</string>
+    <string name="bt_lv1" >Level 1</string>
+    <string name="bt_lv2">Level 2</string>
+    <string name="bt_lv3">Level 3</string>
+    <string name="bt_lv4">Level 4</string>
+    <string name="bt_lv5">Level 5</string>
+    <string name="tV_motivity_game">Motivity</string>
+    <string name="tV_reaction_game">Reaction</string>
+    <string name="cD_IV_settings_volume">Volume</string>
+    <string name="cD_iB_settings_GermanyFlag">Flag Of Germany</string>
+    <string name="cD_iB_settings_FlagOfGreatBritain">Flag Of Great Britain</string>
 </resources>
