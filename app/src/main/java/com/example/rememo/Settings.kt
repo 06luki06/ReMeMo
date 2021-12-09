@@ -12,5 +12,12 @@ class Settings : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         bindingSettings = SettingsBinding.inflate(layoutInflater)
         setContentView(bindingSettings.root)
+
+        bindingSettings.btSettingsSupport.setOnClickListener{}
+        bindingSettings.btSettingCredits.setOnClickListener{}
     }
+
+
+
+
 }
