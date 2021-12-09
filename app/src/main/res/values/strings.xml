@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ReMeMo</string>
+    <string name="TV_ReMeMo">ReMeMo</string>
+    <string name="cD_iB_goToPlayChoice"> Go to the games</string>
+    <string name="tV_placeholder" />
+    <string name="cD_iB_goToHighscore">go to highscore</string>
+    <string name="cD_iB_goToSettings">go to settings</string>
+    <string name="tv_headlingGameChoice">Games</string>
+    <string name="bt_Memory">Memory</string>
+    <string name="bt_Reaction">Reaction</string>
+    <string name="bt_Motivity">Motivity</string>
 </resources>
