@@ -10,8 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMeMo">
         <activity
-            android:name=".GameChoice"
+            android:name=".ReactionGame"
             android:exported="true" />
+        <activity
+            android:name=".MemoryGame"
+            android:exported="true" />
+        <activity
+            android:name=".MotivityGame"
+            android:exported="true"/>
+        <activity
+            android:name=".HighscoreGames"
+            android:exported="true" />
+        <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
+            android:name=".GameChoice"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

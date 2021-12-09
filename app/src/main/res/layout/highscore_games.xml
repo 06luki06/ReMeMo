@@ -7,50 +7,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/iB_HighscoreLink"
-            android:layout_width="15dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:background="#5A606A"
-            android:contentDescription="@string/cD_iB_goToHighscore"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
-
-        <TextView
-            android:id="@+id/tV_Placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/tV_placeholder" />
-
-        <ImageButton
-            android:id="@+id/iB_SettingsLink"
-            android:layout_width="15dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:background="#5A606A"
-            android:contentDescription="@string/cD_iB_goToSettings"
-            app:srcCompat="@android:drawable/ic_menu_manage" />
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/tv_memory_game"
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
-        android:text="@string/tv_headlingGameChoice"
+        android:text="@string/tV_headline_highscore_games"
         android:textSize="30sp"
         android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/tV_highscore_games_infoTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/tV_highscore_games_infoTxt"
+        android:textSize="20sp" />
+
     <Button
-        android:id="@+id/bt_goToMemory"
+        android:id="@+id/bt_memory_lv1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginLeft="20dp"
@@ -59,7 +38,7 @@
         android:text="@string/bt_Memory" />
 
     <Button
-        android:id="@+id/bt_goToReaction"
+        android:id="@+id/bt_memory_lv2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginLeft="20dp"
@@ -68,7 +47,7 @@
         android:text="@string/bt_Reaction" />
 
     <Button
-        android:id="@+id/bt_goToMotivity"
+        android:id="@+id/bt_memory_lv3"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginLeft="20dp"
