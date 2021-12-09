@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ReMeMo</string>
+    <string name="TV_ReMeMo">ReMeMo</string>
+    <string name="cD_iB_goToPlayChoice">Gehe zur Spielauswahl</string>
+    <string name="tV_placeholder" />
+    <string name="cD_iB_goToHighscore">Gehe zum Highscore</string>
+    <string name="cD_iB_goToSettings">Gehezu den Einstellungen</string>
+    <string name="tv_headlingGameChoice">Spielauswahl</string>
+    <string name="bt_Memory">Gedächtnis</string>
+    <string name="bt_Reaction">Reaktion</string>
+    <string name="bt_Motivity">Motorik</string>
+</resources>
