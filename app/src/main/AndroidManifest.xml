@@ -9,66 +9,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMeMo">
-        <activity
-            android:name=".Credits"
+        <activity android:name=".games.memorylvls.Memory_lvl1"
             android:exported="true" />
-        <activity
-            android:name=".Support"
+        <activity android:name=".settings.Credits"
             android:exported="true" />
-        <activity
-            android:name=".HowToPlayReaction"
+        <activity android:name=".settings.Support"
+            android:exported="true" />
+        <activity android:name=".games.howtoplay.HowToPlayReaction"
             android:exported="true"/>
-        <activity
-            android:name=".HowToPlayMotivity"
+        <activity android:name=".games.howtoplay.HowToPlayMotivity"
             android:exported="true"/>
-        <activity
-            android:name=".HowToPlayMemory"
+        <activity android:name=".games.howtoplay.HowToPlayMemory"
             android:exported="true"/>
-        <activity
-            android:name=".ReactionGame"
+        <activity android:name=".games.ReactionGame"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".MemoryGame"
+        <activity android:name=".games.MemoryGame"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".MotivityGame"
+        <activity android:name=".games.MotivityGame"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".HighscoreGames"
+        <activity android:name=".highscore.HighscoreGames"
             android:exported="true" />
-        <activity
-            android:name=".Settings"
+        <activity android:name=".settings.Settings"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".GameChoice"
+        <activity android:name=".games.GameChoice"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

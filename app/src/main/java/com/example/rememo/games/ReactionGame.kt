@@ -1,4 +1,4 @@
-package com.example.rememo
+package com.example.rememo.games
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import com.example.rememo.databinding.GameReactionBinding
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.widget.Toast
+import com.example.rememo.games.howtoplay.HowToPlayReaction
 
 class ReactionGame : AppCompatActivity(){
 
@@ -16,7 +17,7 @@ class ReactionGame : AppCompatActivity(){
         bindingReactionGame = GameReactionBinding.inflate(layoutInflater)
         setContentView(bindingReactionGame.root)
         
-        bindingReactionGame.btHowToPlayReaction.setOnClickListener{goToHowToPlayReaction()}
+        bindingReactionGame.iBHowToPlayReaction.setOnClickListener{goToHowToPlayReaction()}
     }
     
     private fun goToHowToPlayReaction() {

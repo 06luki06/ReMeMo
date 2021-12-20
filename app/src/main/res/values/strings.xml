@@ -47,4 +47,12 @@
     <string name="tV_credits_vanessa">Riedl Vanessa</string>
     <string name="tV_credits_lukas">Riegler Lukas</string>
     <string name="tV_credits_CR">© 2021 | FH Joanneum | IMA</string>
+    <string name="cD_iB_goToPauseScreen">visit pause screen</string>
+    <string name="tv_headline_pause">Pause</string>
+    <string name="cD_iB_Restart">restart the level</string>
+    <string name="cD_iB_goToHowToPlayMemory">visit the instruction of How To Play Memory</string>
+    <string name="cD_iB_goToHowToPlayMotivity">visit the instruction of How To Play Motivity</string>
+    <string name="cD_IB_goToHowToPlayReaction">visit the instruction of How To Play Reaction</string>
+    <string name="cD_iB_resumeToGame">go back to the game</string>
+    <string name="cD_iB_goBackToTheLevels">go back to the laevels</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.rememo
+package com.example.rememo.games.howtoplay
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
