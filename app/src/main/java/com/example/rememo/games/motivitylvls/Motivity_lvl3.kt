@@ -1,33 +1,34 @@
-package com.example.rememo.games.memorylvls
+package com.example.rememo.games.motivitylvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rememo.databinding.MemoryLvl1Binding
+import com.example.rememo.databinding.MotivityLvl1Binding
+import com.example.rememo.databinding.MotivityLvl3Binding
 import com.example.rememo.games.pauseScreens.Pause
 
-class Memory_lvl1 : AppCompatActivity(){
+class Motivity_lvl3 : AppCompatActivity(){
 
-    private lateinit var bindingMemorylvl1 : MemoryLvl1Binding
+    private lateinit var bindingMotivity_lvl3 : MotivityLvl3Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingMemorylvl1 = MemoryLvl1Binding.inflate(layoutInflater)
-        setContentView(bindingMemorylvl1.root)
+        bindingMotivity_lvl3 = MotivityLvl3Binding.inflate(layoutInflater)
+        setContentView(bindingMotivity_lvl3.root)
 
-        bindingMemorylvl1.iBPauseScreen.setOnClickListener{goToPause()}
-
+        bindingMotivity_lvl3.iBPauseScreen.setOnClickListener{goToPause()}
     }
 
     private fun goToPause(){
 
         val intent: Intent = Intent(this, Pause::class.java)
 
-        val game : String = "memory"
+        val game : String = "motivity"
         intent.putExtra("game", game)
 
+        Toast.makeText(applicationContext, game, Toast.LENGTH_LONG).show()
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {

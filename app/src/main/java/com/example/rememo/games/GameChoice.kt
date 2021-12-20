@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.GamesBinding
+import com.example.rememo.games.gamechoices.MemoryGame
+import com.example.rememo.games.gamechoices.MotivityGame
+import com.example.rememo.games.gamechoices.ReactionGame
 import com.example.rememo.highscore.HighscoreGames
 import com.example.rememo.settings.Settings
 
