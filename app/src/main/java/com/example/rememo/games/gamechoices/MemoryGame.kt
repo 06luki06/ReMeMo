@@ -1,10 +1,8 @@
-package com.example.rememo.games
+package com.example.rememo.games.gamechoices
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.games.howtoplay.HowToPlayMemory
@@ -20,21 +18,21 @@ class MemoryGame : AppCompatActivity(){
         bindingMemoryGame = GameMemoryBinding.inflate(layoutInflater)
         setContentView(bindingMemoryGame.root)
 
-        bindingMemoryGame.iBHowToPlayMemory.setOnClickListener{goToHowToPlayReaction()}
-        bindingMemoryGame.btMemoryLv1.setOnClickListener{goToMemoryLvls(1)}
-        bindingMemoryGame.btMemoryLv2.setOnClickListener{goToMemoryLvls(2)}
-        bindingMemoryGame.btMemoryLv3.setOnClickListener{goToMemoryLvls(3)}
-        bindingMemoryGame.btMemoryLv4.setOnClickListener{goToMemoryLvls(4)}
-        bindingMemoryGame.btMemoryLv5.setOnClickListener{goToMemoryLvls(5)}
+        bindingMemoryGame.iBHowToPlayMemory.setOnClickListener{goToHowToPlayMemory()}
+        bindingMemoryGame.btMemoryLv1.setOnClickListener{goToLvls(1)}
+        bindingMemoryGame.btMemoryLv2.setOnClickListener{goToLvls(2)}
+        bindingMemoryGame.btMemoryLv3.setOnClickListener{goToLvls(3)}
+        bindingMemoryGame.btMemoryLv4.setOnClickListener{goToLvls(4)}
+        bindingMemoryGame.btMemoryLv5.setOnClickListener{goToLvls(5)}
     }
 
-    private fun goToHowToPlayReaction() {
+    private fun goToHowToPlayMemory() {
 
         val intent : Intent = Intent(this, HowToPlayMemory::class.java)
         startIntent(intent)
     }
 
-    private fun goToMemoryLvls(lvl : Int) {
+    private fun goToLvls(lvl : Int) {
         var intent: Intent? = null
 
         when (lvl) {
