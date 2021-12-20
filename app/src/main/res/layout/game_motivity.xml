@@ -26,16 +26,14 @@
             android:layout_weight="1"
             android:text="@string/tV_placeholder" />
 
-        <Button
-            android:id="@+id/bt_howToPlay_motivity"
+        <ImageButton
+            android:id="@+id/iB_HowToPlayMotivity"
             android:layout_width="15dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:background="#5A606A"
-            android:text="@string/bt_howToPlay"
-            android:textAllCaps="false"
-            android:textSize="25sp"
-            app:backgroundTint="#5A606A" />
+            android:contentDescription="@string/cD_iB_goToHowToPlayMotivity"
+            app:srcCompat="@android:drawable/ic_dialog_info" />
 
     </LinearLayout>
 

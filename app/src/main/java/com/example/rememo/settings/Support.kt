@@ -1,4 +1,4 @@
-package com.example.rememo
+package com.example.rememo.settings
 
 import android.content.ActivityNotFoundException
 import android.content.Intent

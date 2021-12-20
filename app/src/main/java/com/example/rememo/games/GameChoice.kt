@@ -1,12 +1,13 @@
-package com.example.rememo
+package com.example.rememo.games
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rememo.databinding.ActivityMainBinding
 import com.example.rememo.databinding.GamesBinding
+import com.example.rememo.highscore.HighscoreGames
+import com.example.rememo.settings.Settings
 
 class GameChoice : AppCompatActivity() {
 

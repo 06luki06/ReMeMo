@@ -1,4 +1,4 @@
-package com.example.rememo
+package com.example.rememo.games
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import com.example.rememo.databinding.GameMotivityBinding
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.widget.Toast
+import com.example.rememo.games.howtoplay.HowToPlayMotivity
 
 class MotivityGame: AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class MotivityGame: AppCompatActivity() {
         setContentView(bindingMotivityGame.root)
         
         
-        bindingMotivityGame.btHowToPlayMotivity.setOnClickListener{goToHowToPlayMotivity()}
+        bindingMotivityGame.iBHowToPlayMotivity.setOnClickListener{goToHowToPlayMotivity()}
     }
     
       private fun goToHowToPlayMotivity() {

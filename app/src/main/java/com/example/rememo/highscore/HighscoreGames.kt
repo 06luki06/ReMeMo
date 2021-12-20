@@ -1,4 +1,4 @@
-package com.example.rememo
+package com.example.rememo.highscore
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
