@@ -55,4 +55,5 @@
     <string name="cD_IB_goToHowToPlayReaction">visit the instruction of How To Play Reaction</string>
     <string name="cD_iB_resumeToGame">go back to the game</string>
     <string name="cD_iB_goBackToTheLevels">go back to the laevels</string>
+    <string name="cD_iB_pauseScreen_goToSettings">go to the settings</string>
 </resources>

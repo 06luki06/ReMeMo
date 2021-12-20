@@ -6,18 +6,19 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.MemoryLvl1Binding
+import com.example.rememo.databinding.MemoryLvl2Binding
 import com.example.rememo.games.pauseScreens.Pause
 
-class Memory_lvl1 : AppCompatActivity(){
+class Memory_lvl2 : AppCompatActivity(){
 
-    private lateinit var bindingMemorylvl1 : MemoryLvl1Binding
+    private lateinit var bindingMemorylvl2 : MemoryLvl2Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingMemorylvl1 = MemoryLvl1Binding.inflate(layoutInflater)
-        setContentView(bindingMemorylvl1.root)
+        bindingMemorylvl2 = MemoryLvl2Binding.inflate(layoutInflater)
+        setContentView(bindingMemorylvl2.root)
 
-        bindingMemorylvl1.iBPauseScreen.setOnClickListener{goToPause()}
+        bindingMemorylvl2.iBPauseScreen.setOnClickListener{goToPause()}
 
     }
 
