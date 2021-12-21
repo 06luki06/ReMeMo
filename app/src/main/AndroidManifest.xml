@@ -12,8 +12,7 @@
         android:theme="@style/Theme.ReMeMo">
         <!-- Pause -->
         <activity android:name=".games.pauseScreens.Pause"
-            android:exported="true"
-            tools:ignore="Instantiatable">
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

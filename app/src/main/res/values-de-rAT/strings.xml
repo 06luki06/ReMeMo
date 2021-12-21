@@ -57,4 +57,10 @@
     <string name="cD_iB_resumeToGame">go back to the game</string>
     <string name="cD_iB_goBackToTheLevels">go back to the laevels</string>
     <string name="cD_iB_pauseScreen_goToSettings">go to the settings</string>
+    <string name="bt_memory_1">1</string>
+    <string name="bt_memory_2">2</string>
+    <string name="bt_memory_3">3</string>
+    <string name="bt_memory_4">4</string>
+    <string name="tV_memory_lv1_nextNumber">%1$d</string>
+    <string name="memory_its_your_turn">Now it is your turn!</string>
 </resources>

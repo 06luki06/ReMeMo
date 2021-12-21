@@ -7,10 +7,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.PauseScreenBinding
+import com.example.rememo.games.GameChoice
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayMotivity
 import com.example.rememo.games.howtoplay.HowToPlayReaction
 import com.example.rememo.games.memorylvls.*
+import com.example.rememo.settings.Settings
 
 class Pause : AppCompatActivity(){
 
@@ -24,7 +26,9 @@ class Pause : AppCompatActivity(){
         val game : String? = intent.getStringExtra("game")
 
         bindingPause.iBGoToHowToPlay.setOnClickListener{ goToHowToPlay(game)}
-        Toast.makeText(applicationContext, game, Toast.LENGTH_LONG).show()
+        bindingPause.iBPauseSettings.setOnClickListener{goToSettings()}
+        bindingPause.iBGoToLevels.setOnClickListener{goToGameChoice()}
+        bindingPause.iBResume.setOnClickListener{returnToGame()}
     }
 
     private fun goToHowToPlay(game: String?) {
@@ -37,7 +41,22 @@ class Pause : AppCompatActivity(){
                 print("this game does not exist")
             }
         }
+        startIntent(intent)
+    }
 
+    private fun goToSettings(){
+        startIntent(Intent(this, Settings::class.java))
+    }
+
+    private fun goToGameChoice(){
+        startIntent(Intent(this, GameChoice::class.java))
+    }
+
+    private fun returnToGame(){
+        onBackPressed()
+    }
+
+    private fun startIntent(intent: Intent){
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
