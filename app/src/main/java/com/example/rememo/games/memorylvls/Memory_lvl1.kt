@@ -3,12 +3,14 @@ package com.example.rememo.games.memorylvls
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.databinding.MemoryLvl1Binding
+import com.example.rememo.games.gamechoices.MemoryGame
 import com.example.rememo.games.pauseScreens.Pause
 import kotlin.concurrent.thread
 
@@ -21,16 +23,18 @@ class Memory_lvl1 : AppCompatActivity() {
     private var result: String = ""
     val gameEngine = Memory_game_engine()
     private var resultInput = ""
+    private lateinit var countDownTimer: CountDownTimer
+    private val interval: Long = 1000
+    private var timerEnd :Boolean = false
+    private val howMuch = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingMemorylvl1 = MemoryLvl1Binding.inflate(layoutInflater)
         setContentView(bindingMemorylvl1.root)
 
-        result = gameEngine.saveAsString(buttonChoice)
-
-        val intent: Intent = Intent(this, Pause::class.java)
-        bindingMemorylvl1.iBPauseScreen.setOnClickListener { goToPause(intent) }
+        result = gameEngine.saveAsString(buttonChoice, howMuch)
+        bindingMemorylvl1.iBPauseScreen.setOnClickListener { goToPause() }
 
         val button_1 = bindingMemorylvl1.btMemoryLv111
         val button_2 = bindingMemorylvl1.btMemoryLv112
@@ -38,27 +42,29 @@ class Memory_lvl1 : AppCompatActivity() {
         val button_4 = bindingMemorylvl1.btMemoryLv114
 
         buttonArray = arrayListOf<Button>(button_1, button_2, button_3, button_4)
-        //init(buttonArray)
-        // val inputResult= selectInput(buttonArray)
-        gameEngine.countDown(bindingMemorylvl1, countDown)
+        countDown(bindingMemorylvl1, countDown)
 
         thread { Thread.sleep(countDown)
             init()
         }
     }
 
-    fun goToPause(intent: Intent) {
-
+    fun goToPause() {
+        val intent : Intent = Intent(this, Pause::class.java)
         val game: String = "memory"
         intent.putExtra("game", game)
+        startIntent(intent)
+    }
 
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG
-            ).show()
-        }
+    fun countDown(bindingMemorylvl1: MemoryLvl1Binding, countDownTimerLength: Long) {
+        timerEnd = false
+        bindingMemorylvl1.tVMemoryLv1Numbers.text = result
+        countDownTimer = object : CountDownTimer(countDownTimerLength, interval) {
+            override fun onTick(millisUntilFinished: Long) {}
+            override fun onFinish() {
+                bindingMemorylvl1.tVMemoryLv1Numbers.setText(R.string.memory_its_your_turn)
+            }
+        }.start()
     }
 
     fun init (){
@@ -74,10 +80,40 @@ class Memory_lvl1 : AppCompatActivity() {
     }
 
     fun setClickListener(i:Int){
-        var tvResult = bindingMemorylvl1.tVResult.text.toString()+buttonArray[i].text
-        bindingMemorylvl1.tVResult.text = tvResult
-        if(tvResult.length==4){
+        resultInput += buttonArray[i].text
+        if(resultInput.length == howMuch){
+            compareResults()
             deaktivate()
+        }
+    }
+
+    fun compareResults(){
+        if(result.equals(resultInput)){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Level 1")
+            builder.setMessage("Great, you have nailed it!")
+            builder.setNeutralButton("Back To Games"){dialog, which ->
+                val intent : Intent = Intent(this, MemoryGame::class.java)
+                startActivity(intent)
+            }.show()
+        }else{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Level 1")
+            builder.setMessage("You are a noob, try again")
+            builder.setNeutralButton("Retry"){dialog, which ->
+                val intent : Intent = Intent(this, Memory_lvl1::class.java)
+                startActivity(intent)
+            }.show()
+        }
+    }
+
+    fun startIntent(intent : Intent){
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(
+                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG
+            ).show()
         }
     }
 }
