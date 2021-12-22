@@ -41,7 +41,7 @@ class MemoryGame : AppCompatActivity(){
             3 -> intent = Intent(this, Memory_lvl3::class.java)
             4 -> intent = Intent(this, Memory_lvl4::class.java)
             5 -> intent = Intent(this, Memory_lvl5::class.java)
-            else -> { // Note the block
+            else -> {
                 print("this level does not exist")
             }
         }

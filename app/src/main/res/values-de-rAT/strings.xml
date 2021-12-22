@@ -63,4 +63,10 @@
     <string name="bt_memory_4">4</string>
     <string name="tV_memory_lv1_nextNumber">%1$d</string>
     <string name="memory_its_your_turn">Now it is your turn!</string>
+    <string name="bt_memory_5">5</string>
+    <string name="bt_memory_6">6</string>
+    <string name="bt_memory_7">7</string>
+    <string name="bt_memory_8">8</string>
+    <string name="bt_memory_9">9</string>
+    <string name="bt_memory_10">10</string>
 </resources>

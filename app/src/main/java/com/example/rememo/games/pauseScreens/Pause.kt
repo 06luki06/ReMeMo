@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.PauseScreenBinding
 import com.example.rememo.games.GameChoice
@@ -29,6 +30,7 @@ class Pause : AppCompatActivity(){
         bindingPause.iBPauseSettings.setOnClickListener{goToSettings()}
         bindingPause.iBGoToLevels.setOnClickListener{goToGameChoice()}
         bindingPause.iBResume.setOnClickListener{returnToGame()}
+        bindingPause.iBRestart.setOnClickListener{restartGame()}
     }
 
     private fun goToHowToPlay(game: String?) {
@@ -63,5 +65,18 @@ class Pause : AppCompatActivity(){
             Toast.makeText(
                 applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun restartGame(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Level neustarten")
+        builder.setMessage("Willst du wirklich das Level neustarten?")
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            Toast.makeText(applicationContext, "UNDER CONSTRUCTION", Toast.LENGTH_LONG).show()
+        }.show()
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            onBackPressed()
+        }.show()
     }
 }
