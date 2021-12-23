@@ -2,6 +2,8 @@ package com.example.rememo.games.gamechoices
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,13 @@ import com.example.rememo.games.memorylvls.*
 class MemoryGame : AppCompatActivity(){
 
     private lateinit var bindingMemoryGame : GameMemoryBinding
+    var SHARED_LEVELS : String = ""
+    var memory_lv1_check : String = ""
+    var memory_lv2_check : String = ""
+    var memory_lv3_check : String = ""
+    var memory_lv4_check : String = ""
+    var memory_lv5_check : String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +33,15 @@ class MemoryGame : AppCompatActivity(){
         bindingMemoryGame.btMemoryLv3.setOnClickListener{goToLvls(3)}
         bindingMemoryGame.btMemoryLv4.setOnClickListener{goToLvls(4)}
         bindingMemoryGame.btMemoryLv5.setOnClickListener{goToLvls(5)}
+
+        writeAndSaveSharedPreferences()
+        retrieveSharedPreferences()
+
     }
 
     private fun goToHowToPlayMemory() {
 
-        val intent : Intent = Intent(this, HowToPlayMemory::class.java)
+        intent = Intent(this, HowToPlayMemory::class.java)
         startIntent(intent)
     }
 
@@ -55,5 +68,23 @@ class MemoryGame : AppCompatActivity(){
             Toast.makeText(
                 applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
         }
+    }
+
+
+     fun retrieveSharedPreferences(){
+        val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS, 0)
+         if(memory_lv1_check == "1"){
+             bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
+         }
+    }
+
+    private fun writeAndSaveSharedPreferences(){
+        val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS ,0)
+        preferences
+            .edit()
+            .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
+            .commit()
+
+        Toast.makeText(applicationContext,SHARED_LEVELS, Toast.LENGTH_LONG).show()
     }
 }

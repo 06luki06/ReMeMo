@@ -2,6 +2,7 @@ package com.example.rememo.games.memorylvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -21,20 +22,24 @@ class Memory_lvl1 : AppCompatActivity() {
     private val buttonChoice = arrayOf("1", "2", "3", "4")
     private val countDown: Long = 4000
     private var result: String = ""
-    val gameEngine = Memory_game_engine()
     private var resultInput = ""
+    val gameEngine = Memory_game_engine()
     private lateinit var countDownTimer: CountDownTimer
     private val interval: Long = 1000
     private var timerEnd :Boolean = false
     private val howMuch = 4
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingMemorylvl1 = MemoryLvl1Binding.inflate(layoutInflater)
         setContentView(bindingMemorylvl1.root)
 
+
         result = gameEngine.saveAsString(buttonChoice, howMuch)
         bindingMemorylvl1.iBPauseScreen.setOnClickListener { goToPause() }
+
+
 
         val button_1 = bindingMemorylvl1.btMemoryLv111
         val button_2 = bindingMemorylvl1.btMemoryLv112
@@ -88,14 +93,18 @@ class Memory_lvl1 : AppCompatActivity() {
     }
 
     fun compareResults(){
-        if(result.equals(resultInput)){
+        if(result == resultInput){
+
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Level 1")
             builder.setMessage("Great, you have nailed it!")
             builder.setNeutralButton("Back To Games"){dialog, which ->
                 val intent : Intent = Intent(this, MemoryGame::class.java)
+                intent.putExtra("memory_lv1_checked", "1")
                 startActivity(intent)
             }.show()
+
+
         }else{
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Level 1")
