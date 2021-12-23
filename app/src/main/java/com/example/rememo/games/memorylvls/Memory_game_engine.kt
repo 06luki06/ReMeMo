@@ -13,7 +13,7 @@ class Memory_game_engine : AppCompatActivity() {
         val buttons = ArrayList<String>()
 
         for (i in 0..howMuch) {
-            randomNumber = (0..buttons.size).random()
+            randomNumber = (0..buttons.size + 1).random()
             buttons.add(buttonchoice[randomNumber])
         }
         return buttons

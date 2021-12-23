@@ -104,7 +104,6 @@ class Memory_lvl1 : AppCompatActivity() {
                 startActivity(intent)
             }.show()
 
-
         }else{
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Level 1")
