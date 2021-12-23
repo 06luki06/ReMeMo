@@ -15,11 +15,11 @@ class MemoryGame : AppCompatActivity(){
 
     private lateinit var bindingMemoryGame : GameMemoryBinding
     var SHARED_LEVELS : String = ""
-    var memory_lv1_check : String = ""
-    var memory_lv2_check : String = ""
-    var memory_lv3_check : String = ""
-    var memory_lv4_check : String = ""
-    var memory_lv5_check : String = ""
+    var memory_lv1_check : String? = ""
+    var memory_lv2_check : String? = ""
+    var memory_lv3_check : String? = ""
+    var memory_lv4_check : String? = ""
+    var memory_lv5_check : String? = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,21 +70,75 @@ class MemoryGame : AppCompatActivity(){
         }
     }
 
-
-     fun retrieveSharedPreferences(){
+    fun retrieveSharedPreferences(){
         val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS, 0)
-         if(memory_lv1_check == "1"){
-             bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
-         }
+        /*
+        if(preferences.getString(memory_lv1_check,"0").equals("1")){
+            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
+            if(preferences.getString(memory_lv2_check, "0").equals("2")){
+                bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.GREEN)
+                if(preferences.getString(memory_lv3_check, "0").equals("3")){
+                    bindingMemoryGame.btMemoryLv3.setBackgroundColor(Color.GREEN)
+                    if(preferences.getString(memory_lv4_check, "0").equals("4")){
+                        bindingMemoryGame.btMemoryLv4.setBackgroundColor(Color.GREEN)
+                        if(preferences.getString(memory_lv5_check, "0").equals("5")){
+                            bindingMemoryGame.btMemoryLv5.setBackgroundColor(Color.GREEN)
+                        }else{
+                            bindingMemoryGame.btMemoryLv5.setBackgroundColor(Color.YELLOW)
+                        }
+                    }else{
+                        bindingMemoryGame.btMemoryLv4.setBackgroundColor(Color.YELLOW)
+                    }
+                }else{
+                    bindingMemoryGame.btMemoryLv3.setBackgroundColor(Color.YELLOW)
+                }
+            }else{
+                bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.YELLOW)
+            }
+        }else{
+            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.YELLOW)
+        }
+         */
+
+        if(preferences.getString(memory_lv1_check,"0").equals("1")){
+            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
+            bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.YELLOW)
+        }
     }
 
     private fun writeAndSaveSharedPreferences(){
         val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS ,0)
-        preferences
-            .edit()
-            .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
-            .commit()
 
-        Toast.makeText(applicationContext,SHARED_LEVELS, Toast.LENGTH_LONG).show()
+        /*
+        if(preferences.getString(memory_lv1_check, "0").equals("1")) {
+            if(preferences.getString(memory_lv2_check, "0").equals("2")) {
+            }
+            else{
+                preferences
+                    .edit()
+                    .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
+                    .putString(memory_lv2_check, intent.getStringExtra("memory_lv2_checked").toString())
+                    .apply()
+            }
+        }
+        else{
+            preferences
+                .edit()
+                .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
+                .apply()
+        }
+         */
+
+        if(preferences.getString(memory_lv1_check, "0").equals("1")){
+            return
+        }else{
+            preferences
+                .edit()
+                .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
+                .apply()
+        }
+
+        Toast.makeText(applicationContext, preferences.getString(memory_lv1_check, "0"), Toast.LENGTH_LONG).show()
+
     }
 }

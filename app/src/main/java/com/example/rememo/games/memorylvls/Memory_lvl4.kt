@@ -98,6 +98,7 @@ class Memory_lvl4 : AppCompatActivity(){
             builder.setMessage("Great, you have nailed it!")
             builder.setNeutralButton("Back To Games"){dialog, which ->
                 val intent : Intent = Intent(this, MemoryGame::class.java)
+                intent.putExtra("memory_lv4_checked", "4")
                 startActivity(intent)
             }.show()
         }else{
