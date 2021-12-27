@@ -2,6 +2,7 @@ package com.example.rememo.games.memorylvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -96,9 +97,8 @@ class Memory_lvl2 : AppCompatActivity(){
             builder.setMessage("Great, you have nailed it!")
             builder.setNeutralButton("Back To Games"){dialog, which ->
                 val intent : Intent = Intent(this, MemoryGame::class.java)
-                intent.putExtra("memory_lv1_checked", "1")
-                intent.putExtra("memory_lv2_checked", "2")
-                startActivity(intent)
+                writeIntoSharedPrefs("lvl_2_checked")
+                startIntent(intent)
             }.show()
         }else{
             val builder = AlertDialog.Builder(this)
@@ -106,13 +106,22 @@ class Memory_lvl2 : AppCompatActivity(){
             builder.setMessage("You are a noob, try again")
             builder.setNeutralButton("Retry"){dialog, which ->
                 val intent : Intent = Intent(this, Memory_lvl2::class.java)
-                startActivity(intent)
+                startIntent(intent)
             }.show()
         }
     }
 
+    fun writeIntoSharedPrefs(lvl: String){
+        val prefs : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
+        prefs
+            .edit()
+            .putString(lvl, "true")
+            .apply()
+    }
+
     fun startIntent(intent : Intent){
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(

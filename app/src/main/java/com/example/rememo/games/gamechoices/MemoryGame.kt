@@ -4,8 +4,13 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.databinding.GameMemoryBinding
@@ -14,13 +19,8 @@ import com.example.rememo.games.memorylvls.*
 class MemoryGame : AppCompatActivity(){
 
     private lateinit var bindingMemoryGame : GameMemoryBinding
-    var SHARED_LEVELS : String = ""
-    var memory_lv1_check : String? = ""
-    var memory_lv2_check : String? = ""
-    var memory_lv3_check : String? = ""
-    var memory_lv4_check : String? = ""
-    var memory_lv5_check : String? = ""
-
+    var numbers : ArrayList<Int> = arrayListOf(1)
+    var lvls_for_activate : MutableList<Button> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +28,7 @@ class MemoryGame : AppCompatActivity(){
         setContentView(bindingMemoryGame.root)
 
         bindingMemoryGame.iBHowToPlayMemory.setOnClickListener{goToHowToPlayMemory()}
-        bindingMemoryGame.btMemoryLv1.setOnClickListener{goToLvls(1)}
-        bindingMemoryGame.btMemoryLv2.setOnClickListener{goToLvls(2)}
-        bindingMemoryGame.btMemoryLv3.setOnClickListener{goToLvls(3)}
-        bindingMemoryGame.btMemoryLv4.setOnClickListener{goToLvls(4)}
-        bindingMemoryGame.btMemoryLv5.setOnClickListener{goToLvls(5)}
 
-        writeAndSaveSharedPreferences()
         retrieveSharedPreferences()
 
     }
@@ -45,7 +39,7 @@ class MemoryGame : AppCompatActivity(){
         startIntent(intent)
     }
 
-    private fun goToLvls(lvl : Int) {
+    private fun goToLvls(lvl : Int){
         var intent: Intent? = null
 
         when (lvl) {
@@ -63,6 +57,7 @@ class MemoryGame : AppCompatActivity(){
 
     private fun startIntent(intent : Intent?){
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
@@ -71,74 +66,72 @@ class MemoryGame : AppCompatActivity(){
     }
 
     fun retrieveSharedPreferences(){
-        val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS, 0)
-        /*
-        if(preferences.getString(memory_lv1_check,"0").equals("1")){
-            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
-            if(preferences.getString(memory_lv2_check, "0").equals("2")){
-                bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.GREEN)
-                if(preferences.getString(memory_lv3_check, "0").equals("3")){
-                    bindingMemoryGame.btMemoryLv3.setBackgroundColor(Color.GREEN)
-                    if(preferences.getString(memory_lv4_check, "0").equals("4")){
-                        bindingMemoryGame.btMemoryLv4.setBackgroundColor(Color.GREEN)
-                        if(preferences.getString(memory_lv5_check, "0").equals("5")){
-                            bindingMemoryGame.btMemoryLv5.setBackgroundColor(Color.GREEN)
-                        }else{
-                            bindingMemoryGame.btMemoryLv5.setBackgroundColor(Color.YELLOW)
-                        }
-                    }else{
-                        bindingMemoryGame.btMemoryLv4.setBackgroundColor(Color.YELLOW)
-                    }
-                }else{
-                    bindingMemoryGame.btMemoryLv3.setBackgroundColor(Color.YELLOW)
-                }
-            }else{
-                bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.YELLOW)
-            }
-        }else{
-            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.YELLOW)
-        }
-         */
+        val preferences: SharedPreferences = getSharedPreferences("Levels_Memory", 0)
 
-        if(preferences.getString(memory_lv1_check,"0").equals("1")){
-            bindingMemoryGame.btMemoryLv1.setBackgroundColor(Color.GREEN)
-            bindingMemoryGame.btMemoryLv2.setBackgroundColor(Color.YELLOW)
+        val lvl1 : Button = bindingMemoryGame.btMemoryLv1
+        val lvl2 : Button = bindingMemoryGame.btMemoryLv2
+        val lvl3 : Button = bindingMemoryGame.btMemoryLv3
+        val lvl4 : Button = bindingMemoryGame.btMemoryLv4
+        val lvl5 : Button = bindingMemoryGame.btMemoryLv5
+
+
+        val lvls : ArrayList<Button> = arrayListOf(lvl1, lvl2, lvl3, lvl4, lvl5)
+        for(i in lvls){
+            i.setBackgroundColor(Color.RED)
+        }
+
+        if(preferences.getString("lvl_1_checked", "false").equals("false")) {
+            changeBackgroundToActive(lvl1)
+
+            activateLvl(1, lvl1)
+        }
+
+        if(preferences.getString("lvl_1_checked", "false").equals("true")){
+            lvlMastered(lvl1)
+            changeBackgroundToActive(lvl2)
+            activateLvl(1, lvl1)
+            activateLvl(2, lvl2)
+        }
+
+        if(preferences.getString("lvl_2_checked", "false").equals("true")){
+            lvlMastered(lvl2)
+            changeBackgroundToActive(lvl3)
+            activateLvl(3, lvl3)
+        }
+
+        if(preferences.getString("lvl_3_checked", "false").equals("true")){
+            lvlMastered(lvl3)
+            changeBackgroundToActive(lvl4)
+            activateLvl(4, lvl4)
+        }
+
+        if(preferences.getString("lvl_4_checked", "false").equals("true")){
+            lvlMastered(lvl4)
+            changeBackgroundToActive(lvl5)
+            activateLvl(5, lvl5)
+        }
+
+        if(preferences.getString("lvl_5_checked", "false").equals("true")){
+            lvlMastered(lvl5)
+            activateLvl(5, lvl5)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Everything done!")
+            builder.setMessage("Great, you have passed all leveles. Good job!!")
+            builder.setPositiveButton("Play Levels again"){dialog, which ->
+                dialog.dismiss()
+            }.show()
         }
     }
 
-    private fun writeAndSaveSharedPreferences(){
-        val preferences: SharedPreferences = getSharedPreferences(SHARED_LEVELS ,0)
+    private fun activateLvl(lvlNumbers : Int, lvl : Button){
+        lvl.setOnClickListener{goToLvls(lvlNumbers)}
+    }
 
-        /*
-        if(preferences.getString(memory_lv1_check, "0").equals("1")) {
-            if(preferences.getString(memory_lv2_check, "0").equals("2")) {
-            }
-            else{
-                preferences
-                    .edit()
-                    .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
-                    .putString(memory_lv2_check, intent.getStringExtra("memory_lv2_checked").toString())
-                    .apply()
-            }
-        }
-        else{
-            preferences
-                .edit()
-                .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
-                .apply()
-        }
-         */
+    private fun changeBackgroundToActive(lvl : Button){
+        lvl.setBackgroundColor(Color.YELLOW)
+    }
 
-        if(preferences.getString(memory_lv1_check, "0").equals("1")){
-            return
-        }else{
-            preferences
-                .edit()
-                .putString(memory_lv1_check, intent.getStringExtra("memory_lv1_checked").toString())
-                .apply()
-        }
-
-        Toast.makeText(applicationContext, preferences.getString(memory_lv1_check, "0"), Toast.LENGTH_LONG).show()
-
+    private fun lvlMastered(lvl : Button){
+        lvl.setBackgroundColor(Color.GREEN)
     }
 }

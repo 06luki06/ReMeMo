@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, GameChoice::class.java)
 
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(

@@ -2,6 +2,7 @@ package com.example.rememo.games.memorylvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -18,7 +19,7 @@ class Memory_lvl5 : AppCompatActivity(){
 
     private lateinit var bindingMemorylvl5 : MemoryLvl5Binding
     lateinit var  buttonArray: ArrayList<Button>
-    private val buttonChoice = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+    private val buttonChoice = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9")
     private val countDown: Long = 5000
     private var result: String = ""
     val gameEngine = Memory_game_engine()
@@ -26,7 +27,7 @@ class Memory_lvl5 : AppCompatActivity(){
     private lateinit var countDownTimer: CountDownTimer
     private val interval: Long = 1000
     private var timerEnd :Boolean = false
-    private val howMuch = 10
+    private val howMuch = 9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +46,8 @@ class Memory_lvl5 : AppCompatActivity(){
         val button_7 = bindingMemorylvl5.btMemoryLvl57
         val button_8 = bindingMemorylvl5.btMemoryLvl58
         val button_9 = bindingMemorylvl5.btMemoryLvl59
-        val button_10 = bindingMemorylvl5.btMemoryLvl510
 
-        buttonArray = arrayListOf<Button>(button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, button_10)
+        buttonArray = arrayListOf<Button>(button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9)
         countDown(bindingMemorylvl5, countDown)
 
         thread { Thread.sleep(countDown)
@@ -100,8 +100,8 @@ class Memory_lvl5 : AppCompatActivity(){
             builder.setMessage("Great, you have nailed it!")
             builder.setNeutralButton("Back To Games"){dialog, which ->
                 val intent : Intent = Intent(this, MemoryGame::class.java)
-                intent.putExtra("memory_lv5_checked", "5")
-                startActivity(intent)
+                writeIntoSharedPrefs("lvl_5_checked")
+                startIntent(intent)
             }.show()
         }else{
             val builder = AlertDialog.Builder(this)
@@ -109,13 +109,22 @@ class Memory_lvl5 : AppCompatActivity(){
             builder.setMessage("You are a noob, try again")
             builder.setNeutralButton("Retry"){dialog, which ->
                 val intent : Intent = Intent(this, Memory_lvl5::class.java)
-                startActivity(intent)
+                startIntent(intent)
             }.show()
         }
     }
 
+    fun writeIntoSharedPrefs(lvl: String){
+        val prefs : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
+        prefs
+            .edit()
+            .putString(lvl, "true")
+            .apply()
+    }
+
     fun startIntent(intent : Intent){
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
