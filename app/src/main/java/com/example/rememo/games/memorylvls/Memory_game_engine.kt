@@ -1,5 +1,9 @@
 package com.example.rememo.games.memorylvls
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class Memory_game_engine : AppCompatActivity() {
@@ -12,8 +16,8 @@ class Memory_game_engine : AppCompatActivity() {
 
         val buttons = ArrayList<String>()
 
-        for (i in 0..howMuch) {
-            randomNumber = (0..buttons.size + 1).random()
+        for (i in 0 until howMuch) {
+            randomNumber = (buttonchoice.indices).random()
             buttons.add(buttonchoice[randomNumber])
         }
         return buttons
@@ -22,7 +26,7 @@ class Memory_game_engine : AppCompatActivity() {
     fun saveAsString(buttonChoice: Array<String>, howMuch: Int): String {
         val arrayList: ArrayList<String> = selectRandomButtons(buttonChoice, howMuch)
 
-        for (i in 0 until arrayList.size - 1) {
+        for (i in 0 until arrayList.size ) {
             result += arrayList[i]
         }
         return result

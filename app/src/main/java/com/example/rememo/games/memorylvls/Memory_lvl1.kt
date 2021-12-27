@@ -2,6 +2,7 @@ package com.example.rememo.games.memorylvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -38,8 +39,6 @@ class Memory_lvl1 : AppCompatActivity() {
 
         result = gameEngine.saveAsString(buttonChoice, howMuch)
         bindingMemorylvl1.iBPauseScreen.setOnClickListener { goToPause() }
-
-
 
         val button_1 = bindingMemorylvl1.btMemoryLv111
         val button_2 = bindingMemorylvl1.btMemoryLv112
@@ -100,8 +99,8 @@ class Memory_lvl1 : AppCompatActivity() {
             builder.setMessage("Great, you have nailed it!")
             builder.setNeutralButton("Back To Games"){dialog, which ->
                 val intent : Intent = Intent(this, MemoryGame::class.java)
-                intent.putExtra("memory_lv1_checked", "1")
-                startActivity(intent)
+                writeIntoSharedPrefs("lvl_1_checked")
+                startIntent(intent)
             }.show()
 
         }else{
@@ -110,13 +109,23 @@ class Memory_lvl1 : AppCompatActivity() {
             builder.setMessage("You are a noob, try again")
             builder.setNeutralButton("Retry"){dialog, which ->
                 val intent : Intent = Intent(this, Memory_lvl1::class.java)
-                startActivity(intent)
+                startIntent(intent)
             }.show()
         }
     }
 
+    fun writeIntoSharedPrefs(lvl: String){
+        val prefs : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
+        prefs
+            .edit()
+            .putString(lvl, "true")
+            .apply()
+    }
+
+
     fun startIntent(intent : Intent){
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(

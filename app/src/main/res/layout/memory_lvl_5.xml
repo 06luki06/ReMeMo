@@ -138,17 +138,9 @@
             android:id="@+id/bt_memory_lvl_5_9"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:text="@string/bt_memory_9" />
 
-        <Button
-            android:id="@+id/bt_memory_lvl_5_10"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="@string/bt_memory_10" />
     </LinearLayout>
 
     <TextView
