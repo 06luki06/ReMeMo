@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.SettingsBinding
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.example.rememo.MainActivity
+import com.example.rememo.R
 
 class Settings : AppCompatActivity(){
 
@@ -15,29 +19,129 @@ class Settings : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         bindingSettings = SettingsBinding.inflate(layoutInflater)
         setContentView(bindingSettings.root)
+        var prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
 
         bindingSettings.btSettingsSupport.setOnClickListener{goToSupport()}
         bindingSettings.btSettingCredits.setOnClickListener{goToCredits()}
+        bindingSettings.btVolumeUp.setOnClickListener{setVolumeUp(prefs)}
+        bindingSettings.btVolumeDown.setOnClickListener{setVolumeDown(prefs)}
+        bindingSettings.btSettingsReset.setOnClickListener{resetTheGame()}
 
+        showPicture(prefs)
     }
 
     private fun goToSupport() {
-
         val intent: Intent = Intent(this, Support::class.java)
+        startIntent(intent)
+    }
 
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
+    private fun goToCredits() {
+        val intent: Intent = Intent(this, Credits::class.java)
+        startIntent(intent)
+    }
+
+    private fun setVolumeDown(prefs : SharedPreferences){
+        if(prefs.getInt("Sound", -1) == 0){
+        }else{
+            var sound : Int = prefs.getInt("Sound", -1)
+            sound--
+            writeIntoSharedPrefs(sound, prefs)
         }
     }
 
+    private fun setVolumeUp(prefs : SharedPreferences){
+        var sound : Int = prefs.getInt("Sound", -1)
 
-    private fun goToCredits() {
+        if(prefs.getInt("Sound", -1) == 3){
+        }else{
+            when(prefs.getInt("Sound", -1)){
+                -1 -> sound += 2
+                else -> sound++
+            }
+            writeIntoSharedPrefs(sound, prefs)
+        }
+    }
 
-        val intent: Intent = Intent(this, Credits::class.java)
+    private fun writeIntoSharedPrefs(sound : Int, prefs : SharedPreferences){
+        prefs
+            .edit()
+            .putInt("Sound", sound)
+            .apply()
 
+        showPicture(prefs)
+    }
+
+
+    private fun showPicture(prefs: SharedPreferences){
+        val soundNumber : Int = prefs.getInt("Sound", -1)
+        val soundDisplay = bindingSettings.picVolume
+
+        when(soundNumber){
+            -1 -> {
+                soundDisplay.setImageResource(R.drawable.aus)
+                prefs
+                    .edit()
+                    .putInt("soundMin", 0)
+                    .putInt("soundMax", 0)
+                    .apply()}
+
+            0 -> {
+                soundDisplay.setImageResource(R.drawable.aus)
+                prefs
+                    .edit()
+                    .putInt("soundMin", 0)
+                    .putInt("soundMax", 0)
+                    .apply()}
+
+            1 -> {
+                soundDisplay.setImageResource(R.drawable.leise)
+                prefs
+                    .edit()
+                    .putInt("soundMin", 0)
+                    .putInt("soundMax", 33)
+                    .apply()}
+
+            2 -> {
+                soundDisplay.setImageResource(R.drawable.mittel)
+                prefs
+                    .edit()
+                    .putInt("soundMin", 33)
+                    .putInt("soundMax", 66)
+                    .apply()}
+
+            3 -> {
+                soundDisplay.setImageResource(R.drawable.laut)
+                prefs
+                    .edit()
+                    .putInt("soundMin", 66)
+                    .putInt("soundMax", 100)
+                    .apply()}
+        }
+    }
+
+    private fun resetTheGame(){
+        val memorySP : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
+        val intent : Intent = Intent(this, MainActivity::class.java)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Hawara")
+        builder.setMessage("Wüsst wiakli ois leschn?")
+        builder.setPositiveButton("LÖSCHE ALLES"){dialog, which ->
+            memorySP
+                .edit()
+                .clear()
+                .apply()
+
+            finish()
+            startActivity(intent)
+        }.show()
+
+        builder.setNegativeButton("Ne doch nicht"){dialog, which ->
+            onBackPressed()
+        }.show()
+    }
+
+    private fun startIntent(intent: Intent){
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {

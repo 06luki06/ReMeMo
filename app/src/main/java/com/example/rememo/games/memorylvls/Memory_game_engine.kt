@@ -1,15 +1,12 @@
 package com.example.rememo.games.memorylvls
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
 import android.content.SharedPreferences
-import android.widget.Toast
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 
 class Memory_game_engine : AppCompatActivity() {
 
     private var result: String = ""
-
 
     private fun selectRandomButtons(buttonchoice: Array<String>, howMuch : Int): ArrayList<String> {
         var randomNumber: Int
@@ -30,5 +27,12 @@ class Memory_game_engine : AppCompatActivity() {
             result += arrayList[i]
         }
         return result
+    }
+
+    fun setSound(prefs : SharedPreferences, mp : MediaPlayer){
+        val min : Int = prefs.getInt("soundMin", 0)
+        val max : Int = prefs.getInt("soundMax", 0)
+
+        mp.setVolume(min.toFloat(), max.toFloat())
     }
 }

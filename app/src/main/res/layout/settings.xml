@@ -33,7 +33,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/bt_volume_up"
+            android:id="@+id/bt_volume_down"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
@@ -47,11 +47,10 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:contentDescription="@string/cD_IV_settings_volume"
-            app:srcCompat="@android:drawable/ic_lock_silent_mode" />
+            android:contentDescription="@string/cD_IV_settings_volume" />
 
         <Button
-            android:id="@+id/bt_volume_down"
+            android:id="@+id/bt_volume_up"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginEnd="20dp"
@@ -84,7 +83,8 @@
             android:layout_marginEnd="30dp"
             android:layout_weight="1"
             android:contentDescription="@string/cD_iB_settings_GermanyFlag"
-            app:srcCompat="@android:drawable/ic_menu_mapmode" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/ger" />
 
         <ImageButton
             android:id="@+id/iB_settings_english"
@@ -94,7 +94,8 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:contentDescription="@string/cD_iB_settings_FlagOfGreatBritain"
-            app:srcCompat="@android:drawable/ic_menu_mapmode" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/gbr" />
     </LinearLayout>
 
     <Button
@@ -125,4 +126,5 @@
         android:layout_marginEnd="20dp"
         android:text="@string/bt_support"
         android:textSize="20sp" />
+
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.rememo.games.memorylvls
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
@@ -17,16 +18,19 @@ import kotlin.concurrent.thread
 
 class Memory_lvl3 : AppCompatActivity(){
 
+    private lateinit var mp : MediaPlayer
     private lateinit var bindingMemorylvl3 : MemoryLvl3Binding
-    lateinit var  buttonArray: ArrayList<Button>
+    private val gameEngine = Memory_game_engine()
+
+    private lateinit var  buttonArray: ArrayList<Button>
     private val buttonChoice = arrayOf("1", "2", "3", "4", "5", "6", "7", "8")
-    private val countDown: Long = 6000
-    private var result: String = ""
-    val gameEngine = Memory_game_engine()
-    private var resultInput = ""
+
     private lateinit var countDownTimer: CountDownTimer
+    private val countDown: Long = 6000
     private val interval: Long = 1000
-    private var timerEnd :Boolean = false
+
+    private var result: String = ""
+    private var resultInput = ""
     private val howMuch = 8
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +38,12 @@ class Memory_lvl3 : AppCompatActivity(){
         bindingMemorylvl3 = MemoryLvl3Binding.inflate(layoutInflater)
         setContentView(bindingMemorylvl3.root)
 
+        mp = MediaPlayer.create(this, R.raw.clapping)
+        val prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
+        gameEngine.setSound(prefs, mp)
+
         result = gameEngine.saveAsString(buttonChoice, howMuch)
+
         bindingMemorylvl3.iBPauseScreen.setOnClickListener{goToPause()}
 
         val button_1 = bindingMemorylvl3.btMemoryLvl31
@@ -45,10 +54,9 @@ class Memory_lvl3 : AppCompatActivity(){
         val button_6 = bindingMemorylvl3.btMemoryLvl36
         val button_7 = bindingMemorylvl3.btMemoryLvl37
         val button_8 = bindingMemorylvl3.btMemoryLvl38
-
         buttonArray = arrayListOf<Button>(button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8)
-        countDown(bindingMemorylvl3, countDown)
 
+        countDown(bindingMemorylvl3, countDown)
         thread { Thread.sleep(countDown)
             init()
         }
@@ -62,7 +70,6 @@ class Memory_lvl3 : AppCompatActivity(){
     }
 
     fun countDown(bindingMemorylvl3: MemoryLvl3Binding, countDownTimerLength: Long) {
-        timerEnd = false
         bindingMemorylvl3.tVMemoryLv3Numbers.text = result
         countDownTimer = object : CountDownTimer(countDownTimerLength, interval) {
             override fun onTick(millisUntilFinished: Long) {}
@@ -94,6 +101,7 @@ class Memory_lvl3 : AppCompatActivity(){
 
     fun compareResults(){
         if(result.equals(resultInput)){
+            mp.start()
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Level 3")
             builder.setMessage("Great, you have nailed it!")
@@ -130,5 +138,10 @@ class Memory_lvl3 : AppCompatActivity(){
                 applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG
             ).show()
         }
+    }
+
+    override fun onDestroy() {
+        mp.release()
+        super.onDestroy()
     }
 }

@@ -4,14 +4,13 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rememo.R
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.databinding.GameMemoryBinding
 import com.example.rememo.games.memorylvls.*
@@ -19,8 +18,7 @@ import com.example.rememo.games.memorylvls.*
 class MemoryGame : AppCompatActivity(){
 
     private lateinit var bindingMemoryGame : GameMemoryBinding
-    var numbers : ArrayList<Int> = arrayListOf(1)
-    var lvls_for_activate : MutableList<Button> = mutableListOf()
+    private lateinit var mp : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +26,13 @@ class MemoryGame : AppCompatActivity(){
         setContentView(bindingMemoryGame.root)
 
         bindingMemoryGame.iBHowToPlayMemory.setOnClickListener{goToHowToPlayMemory()}
-
+        mp = MediaPlayer.create(this, R.raw.clapping)
         retrieveSharedPreferences()
-
     }
 
     private fun goToHowToPlayMemory() {
-
         intent = Intent(this, HowToPlayMemory::class.java)
-        startIntent(intent)
+        startActivity(intent)
     }
 
     private fun goToLvls(lvl : Int){
@@ -65,7 +61,7 @@ class MemoryGame : AppCompatActivity(){
         }
     }
 
-    fun retrieveSharedPreferences(){
+   private fun retrieveSharedPreferences(){
         val preferences: SharedPreferences = getSharedPreferences("Levels_Memory", 0)
 
         val lvl1 : Button = bindingMemoryGame.btMemoryLv1
@@ -74,7 +70,6 @@ class MemoryGame : AppCompatActivity(){
         val lvl4 : Button = bindingMemoryGame.btMemoryLv4
         val lvl5 : Button = bindingMemoryGame.btMemoryLv5
 
-
         val lvls : ArrayList<Button> = arrayListOf(lvl1, lvl2, lvl3, lvl4, lvl5)
         for(i in lvls){
             i.setBackgroundColor(Color.RED)
@@ -82,7 +77,6 @@ class MemoryGame : AppCompatActivity(){
 
         if(preferences.getString("lvl_1_checked", "false").equals("false")) {
             changeBackgroundToActive(lvl1)
-
             activateLvl(1, lvl1)
         }
 
@@ -120,6 +114,7 @@ class MemoryGame : AppCompatActivity(){
             builder.setPositiveButton("Play Levels again"){dialog, which ->
                 dialog.dismiss()
             }.show()
+            mp.start()
         }
     }
 
@@ -133,5 +128,10 @@ class MemoryGame : AppCompatActivity(){
 
     private fun lvlMastered(lvl : Button){
         lvl.setBackgroundColor(Color.GREEN)
+    }
+
+    override fun onDestroy() {
+        mp.release()
+        super.onDestroy()
     }
 }
