@@ -6,10 +6,13 @@ import com.example.rememo.databinding.SettingsBinding
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.rememo.MainActivity
 import com.example.rememo.R
+import java.util.*
 
 class Settings : AppCompatActivity(){
 
@@ -19,14 +22,17 @@ class Settings : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         bindingSettings = SettingsBinding.inflate(layoutInflater)
         setContentView(bindingSettings.root)
-        var prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
+        var prefs: SharedPreferences = getSharedPreferences("Soundsettings", 0)
 
-        bindingSettings.btSettingsSupport.setOnClickListener{goToSupport()}
-        bindingSettings.btSettingCredits.setOnClickListener{goToCredits()}
-        bindingSettings.btVolumeUp.setOnClickListener{setVolumeUp(prefs)}
-        bindingSettings.btVolumeDown.setOnClickListener{setVolumeDown(prefs)}
-        bindingSettings.btSettingsReset.setOnClickListener{resetTheGame()}
+        bindingSettings.btSettingsSupport.setOnClickListener { goToSupport() }
+        bindingSettings.btSettingCredits.setOnClickListener { goToCredits() }
+        bindingSettings.btVolumeUp.setOnClickListener { setVolumeUp(prefs) }
+        bindingSettings.btVolumeDown.setOnClickListener { setVolumeDown(prefs) }
+        bindingSettings.btSettingsReset.setOnClickListener { resetTheGame() }
+        val iv_german : ImageView = bindingSettings.iVSettingsGerman
+        val iv_english : ImageView = bindingSettings.iVSettingsEnglish
 
+        checkLanguage(iv_german, iv_english)
         showPicture(prefs)
     }
 
@@ -126,7 +132,7 @@ class Settings : AppCompatActivity(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Hawara")
         builder.setMessage("Wüsst wiakli ois leschn?")
-        builder.setPositiveButton("LÖSCHE ALLES"){dialog, which ->
+        builder.setPositiveButton("LÖSCHE ALLES"){_, _ ->
             memorySP
                 .edit()
                 .clear()
@@ -136,7 +142,7 @@ class Settings : AppCompatActivity(){
             startActivity(intent)
         }.show()
 
-        builder.setNegativeButton("Ne doch nicht"){dialog, which ->
+        builder.setNegativeButton("Ne doch nicht"){_, _ ->
             onBackPressed()
         }.show()
     }
@@ -147,6 +153,20 @@ class Settings : AppCompatActivity(){
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
                 applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun checkLanguage(german : ImageView, english : ImageView){
+        val lang = Locale.getDefault().language
+
+        if(lang == "de"){
+            german.setBackgroundColor(Color.GRAY)
+            english.setBackgroundColor(Color.WHITE)
+        }
+
+        if(lang == "en"){
+            english.setBackgroundColor(Color.GRAY)
+            german.setBackgroundColor(Color.WHITE)
         }
     }
 }

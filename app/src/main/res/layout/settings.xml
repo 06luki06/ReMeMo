@@ -75,27 +75,31 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/iB_settings_german"
+        <ImageView
+            android:id="@+id/iV_SettingsGerman"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
             android:layout_weight="1"
             android:contentDescription="@string/cD_iB_settings_GermanyFlag"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ger" />
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:srcCompat="@drawable/ger" />
 
-        <ImageButton
-            android:id="@+id/iB_settings_english"
+        <ImageView
+            android:id="@+id/iV_settings_english"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:contentDescription="@string/cD_iB_settings_FlagOfGreatBritain"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/gbr" />
+            app:srcCompat="@drawable/gbr" />
+
     </LinearLayout>
 
     <Button
