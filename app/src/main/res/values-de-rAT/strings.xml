@@ -69,4 +69,8 @@
     <string name="bt_memory_8">8</string>
     <string name="bt_memory_9">9</string>
     <string name="bt_memory_10">10</string>
+    <string name="iV_fliege">This is a fly</string>
+    <string name="tV_catched_Flys">catched Flys</string>
+    <string name="tV_flies_left">Flies left</string>
+    <string name="tV_time_left">Time Left</string>
 </resources>
