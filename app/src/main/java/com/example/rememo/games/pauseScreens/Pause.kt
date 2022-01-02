@@ -43,11 +43,11 @@ class Pause : AppCompatActivity(){
                 print("this game does not exist")
             }
         }
-        startIntent(intent)
+        startActivity(intent)
     }
 
     private fun goToSettings(){
-        startIntent(Intent(this, Settings::class.java))
+        startActivity(Intent(this, Settings::class.java))
     }
 
     private fun goToGameChoice(){
@@ -60,6 +60,7 @@ class Pause : AppCompatActivity(){
 
     private fun startIntent(intent: Intent){
         try {
+            finish()
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(

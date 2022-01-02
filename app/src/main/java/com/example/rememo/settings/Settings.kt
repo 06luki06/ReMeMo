@@ -10,7 +10,7 @@ import android.graphics.Color
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.rememo.MainActivity
+import com.example.rememo.StartScreen
 import com.example.rememo.R
 import java.util.*
 
@@ -127,7 +127,7 @@ class Settings : AppCompatActivity(){
 
     private fun resetTheGame(){
         val memorySP : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
-        val intent : Intent = Intent(this, MainActivity::class.java)
+        val intent : Intent = Intent(this, StartScreen::class.java)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Hawara")

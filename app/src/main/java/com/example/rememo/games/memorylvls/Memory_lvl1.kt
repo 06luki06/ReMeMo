@@ -59,14 +59,14 @@ class Memory_lvl1 : AppCompatActivity() {
         }
     }
 
-    fun goToPause() {
+    private fun goToPause() {
         val intent : Intent = Intent(this, Pause::class.java)
         val game: String = "memory"
         intent.putExtra("game", game)
         startIntent(intent)
     }
 
-    fun countDown(bindingMemorylvl1: MemoryLvl1Binding, countDownTimerLength: Long) {
+    private fun countDown(bindingMemorylvl1: MemoryLvl1Binding, countDownTimerLength: Long) {
         bindingMemorylvl1.tVMemoryLv1Numbers.text = result
         countDownTimer = object : CountDownTimer(countDownTimerLength, interval) {
             override fun onTick(millisUntilFinished: Long) {}
@@ -76,19 +76,19 @@ class Memory_lvl1 : AppCompatActivity() {
         }.start()
     }
 
-    fun init (){
+    private fun init (){
         for (i in 0 until buttonArray.size ) {
             buttonArray[i].setOnClickListener {setClickListener(i)}
         }
     }
 
-    fun deaktivate(){
+    private fun deaktivate(){
         for (i in 0 until buttonArray.size ) {
             buttonArray[i].setOnClickListener { null }
         }
     }
 
-    fun setClickListener(i:Int){
+    private fun setClickListener(i:Int){
         resultInput += buttonArray[i].text
         if(resultInput.length == howMuch){
             compareResults()
@@ -96,7 +96,7 @@ class Memory_lvl1 : AppCompatActivity() {
         }
     }
 
-    fun compareResults(){
+    private fun compareResults(){
         if(result == resultInput){
             mp.start()
             val builder = AlertDialog.Builder(this)
@@ -119,7 +119,7 @@ class Memory_lvl1 : AppCompatActivity() {
         }
     }
 
-    fun writeIntoSharedPrefs(lvl: String){
+    private fun writeIntoSharedPrefs(lvl: String){
         val prefs : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
         prefs
             .edit()
@@ -128,7 +128,7 @@ class Memory_lvl1 : AppCompatActivity() {
     }
 
 
-    fun startIntent(intent : Intent){
+    private fun startIntent(intent : Intent){
         try {
             finish()
             startActivity(intent)

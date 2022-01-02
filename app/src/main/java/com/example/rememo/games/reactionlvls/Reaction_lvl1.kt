@@ -2,6 +2,8 @@ package com.example.rememo.games.reactionlvls
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
@@ -33,15 +35,21 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     private lateinit var gameboard : ViewGroup
     private val HIGHEST_AGE : Long = 2000
     private val handler : Handler = Handler()
+    private lateinit var clapping : MediaPlayer
+    private lateinit var sum : MediaPlayer
+    private var isPaused : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingReaction_lvl1= ReactionLvl1Binding.inflate(layoutInflater)
         setContentView((bindingReaction_lvl1.root))
+
         bindingReaction_lvl1.iBPauseScreen.setOnClickListener{goToPause()}
         scale = resources.displayMetrics.density
         startGame()
         gameboard = bindingReaction_lvl1.FLGameboard
+        sum = MediaPlayer.create(this, R.raw.summen)
+        clapping = MediaPlayer.create(this, R.raw.clapping)
     }
 
     private fun goToPause(){
@@ -51,6 +59,11 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
         val game : String = "reaction"
         intent.putExtra("game", game)
         startActivity(intent)
+        hasBeenPaused()
+    }
+
+    private fun hasBeenPaused(){
+        isPaused = true
     }
 
     private fun startGame(){
@@ -73,7 +86,7 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
         tVTimeLeft.setText(time.toString())
 
         val flys_left_bar : FrameLayout = bindingReaction_lvl1.FLCatchedFlys
-        val time_left_bar : FrameLayout = bindingReaction_lvl1.FLTtimeLeft
+        val time_left_bar : FrameLayout = bindingReaction_lvl1.FLTimeLeft
 
         val lpCatched : ViewGroup.LayoutParams = flys_left_bar.layoutParams
         lpCatched.width = Math.round(scale * 300 * Math.min(catchedFlys, flys) / flys)
@@ -83,7 +96,9 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     private fun countdownTIme(){
-        time--
+        if(!isPaused){
+            time--
+        }
         val randomNumber : Float = randdomNumberGenerator.nextFloat()
         val propability : Double = flys * 1.5 / 60
         if(propability > 1){
@@ -102,6 +117,7 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
             if(!checkIfLevelPassed()){
                 handler.postDelayed(this, 1000)
             }else{
+                clapping.start()
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Level 1")
                 builder.setMessage("Great, you have nailed it")
@@ -109,11 +125,13 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
                     val intent : Intent = Intent(this, ReactionGame::class.java)
                     startIntent(intent)
                 }.show()
+                writeIntoSharedPrefs("lvl_1_checked")
             }
         }
     }
 
     private fun showFlys(){
+        sum.start()
         var gameboard_width : Int = gameboard.width
         var gameboard_height : Int = gameboard.height
 
@@ -187,10 +205,30 @@ class Reaction_lvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
         flys_to_hit--
         updateScreen()
         gameboard.removeView(v)
+        sum.pause()
     }
 
     override fun run(){
         countdownTIme()
+    }
+
+    private fun writeIntoSharedPrefs(lvl: String){
+        val prefs : SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
+        prefs
+            .edit()
+            .putString(lvl, "true")
+            .apply()
+    }
+
+    override fun onDestroy(){
+        sum.release()
+        clapping.release()
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        isPaused = false
+        super.onBackPressed()
     }
 
 }
