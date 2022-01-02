@@ -90,7 +90,7 @@
                 android:text="@string/tV_time_left" />
 
             <FrameLayout
-                android:id="@+id/FL_ttime_left"
+                android:id="@+id/FL_time_left"
                 android:layout_width="50dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center_vertical"

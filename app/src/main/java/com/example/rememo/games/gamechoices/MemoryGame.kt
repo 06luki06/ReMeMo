@@ -18,6 +18,7 @@ import com.example.rememo.games.memorylvls.*
 class MemoryGame : AppCompatActivity(){
 
     private lateinit var bindingMemoryGame : GameMemoryBinding
+    private val lvlDesign = LvlDesign()
     private lateinit var mp : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,37 +77,37 @@ class MemoryGame : AppCompatActivity(){
         }
 
         if(preferences.getString("lvl_1_checked", "false").equals("false")) {
-            changeBackgroundToActive(lvl1)
+            lvlDesign.changeBackgroundToActive(lvl1)
             activateLvl(1, lvl1)
         }
 
         if(preferences.getString("lvl_1_checked", "false").equals("true")){
-            lvlMastered(lvl1)
-            changeBackgroundToActive(lvl2)
+            lvlDesign.lvlMastered(lvl1)
+            lvlDesign.changeBackgroundToActive(lvl2)
             activateLvl(1, lvl1)
             activateLvl(2, lvl2)
         }
 
         if(preferences.getString("lvl_2_checked", "false").equals("true")){
-            lvlMastered(lvl2)
-            changeBackgroundToActive(lvl3)
+            lvlDesign.lvlMastered(lvl2)
+            lvlDesign.changeBackgroundToActive(lvl3)
             activateLvl(3, lvl3)
         }
 
         if(preferences.getString("lvl_3_checked", "false").equals("true")){
-            lvlMastered(lvl3)
-            changeBackgroundToActive(lvl4)
+            lvlDesign.lvlMastered(lvl3)
+            lvlDesign.changeBackgroundToActive(lvl4)
             activateLvl(4, lvl4)
         }
 
         if(preferences.getString("lvl_4_checked", "false").equals("true")){
-            lvlMastered(lvl4)
-            changeBackgroundToActive(lvl5)
+            lvlDesign.lvlMastered(lvl4)
+            lvlDesign.changeBackgroundToActive(lvl5)
             activateLvl(5, lvl5)
         }
 
         if(preferences.getString("lvl_5_checked", "false").equals("true")){
-            lvlMastered(lvl5)
+            lvlDesign.lvlMastered(lvl5)
             activateLvl(5, lvl5)
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Everything done!")
@@ -120,14 +121,6 @@ class MemoryGame : AppCompatActivity(){
 
     private fun activateLvl(lvlNumbers : Int, lvl : Button){
         lvl.setOnClickListener{goToLvls(lvlNumbers)}
-    }
-
-    private fun changeBackgroundToActive(lvl : Button){
-        lvl.setBackgroundColor(Color.YELLOW)
-    }
-
-    private fun lvlMastered(lvl : Button){
-        lvl.setBackgroundColor(Color.GREEN)
     }
 
     override fun onDestroy() {

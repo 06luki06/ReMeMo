@@ -5,7 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.GameReactionBinding
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.media.MediaPlayer
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.example.rememo.R
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayReaction
 import com.example.rememo.games.memorylvls.*
@@ -14,22 +20,21 @@ import com.example.rememo.games.reactionlvls.*
 class ReactionGame : AppCompatActivity(){
 
     private lateinit var bindingReactionGame : GameReactionBinding
+    private var lvlDesign = LvlDesign()
+    private lateinit var mp : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingReactionGame = GameReactionBinding.inflate(layoutInflater)
         setContentView(bindingReactionGame.root)
+        mp = MediaPlayer.create(this, R.raw.clapping)
 
         bindingReactionGame.iBHowToPlayReaction.setOnClickListener{goToHowToPlayReaction()}
-        bindingReactionGame.btReactionLv1.setOnClickListener{goToLvls(1)}
-        bindingReactionGame.btReactionLv2.setOnClickListener{goToLvls(2)}
-        bindingReactionGame.btReactionLv3.setOnClickListener{goToLvls(3)}
-        bindingReactionGame.btReactionLv4.setOnClickListener{goToLvls(4)}
-        bindingReactionGame.btReactionLv5.setOnClickListener{goToLvls(5)}
+
+        retrieveSharedPreferences()
     }
 
     private fun goToHowToPlayReaction() {
-
         val intent : Intent = Intent(this, HowToPlayReaction::class.java)
         startIntent(intent)
     }
@@ -57,5 +62,71 @@ class ReactionGame : AppCompatActivity(){
             Toast.makeText(
                 applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun retrieveSharedPreferences(){
+        val preferences: SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
+
+        val lvl1 : Button = bindingReactionGame.btReactionLv1
+        val lvl2 : Button = bindingReactionGame.btReactionLv2
+        val lvl3 : Button = bindingReactionGame.btReactionLv3
+        val lvl4 : Button = bindingReactionGame.btReactionLv4
+        val lvl5 : Button = bindingReactionGame.btReactionLv5
+
+        val lvls : ArrayList<Button> = arrayListOf(lvl1, lvl2, lvl3, lvl4, lvl5)
+        for(i in lvls){
+            i.setBackgroundColor(Color.RED)
+        }
+
+        if(preferences.getString("lvl_1_checked", "false").equals("false")) {
+            lvlDesign.changeBackgroundToActive(lvl1)
+            activateLvl(1, lvl1)
+        }
+
+        if(preferences.getString("lvl_1_checked", "false").equals("true")){
+            lvlDesign.lvlMastered(lvl1)
+            lvlDesign.changeBackgroundToActive(lvl2)
+            activateLvl(1, lvl1)
+            activateLvl(2, lvl2)
+        }
+
+        if(preferences.getString("lvl_2_checked", "false").equals("true")){
+            lvlDesign.lvlMastered(lvl2)
+            lvlDesign.changeBackgroundToActive(lvl3)
+            activateLvl(3, lvl3)
+        }
+
+        if(preferences.getString("lvl_3_checked", "false").equals("true")){
+            lvlDesign.lvlMastered(lvl3)
+            lvlDesign.changeBackgroundToActive(lvl4)
+            activateLvl(4, lvl4)
+        }
+
+        if(preferences.getString("lvl_4_checked", "false").equals("true")){
+            lvlDesign.lvlMastered(lvl4)
+            lvlDesign.changeBackgroundToActive(lvl5)
+            activateLvl(5, lvl5)
+        }
+
+        if(preferences.getString("lvl_5_checked", "false").equals("true")){
+            lvlDesign.lvlMastered(lvl5)
+            activateLvl(5, lvl5)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Everything done!")
+            builder.setMessage("Great, you have passed all leveles. Good job!!")
+            builder.setPositiveButton("Play Levels again"){dialog, which ->
+                dialog.dismiss()
+            }.show()
+            mp.start()
+        }
+    }
+
+    private fun activateLvl(lvlNumbers : Int, lvl : Button){
+        lvl.setOnClickListener{goToLvls(lvlNumbers)}
+    }
+
+    override fun onDestroy() {
+        mp.release()
+        super.onDestroy()
     }
 }

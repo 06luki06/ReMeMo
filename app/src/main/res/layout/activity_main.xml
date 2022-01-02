@@ -5,7 +5,7 @@
     android:id="@+id/homeSite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".StartScreen">
 
     <TextView
         android:id="@+id/ReMeMo"

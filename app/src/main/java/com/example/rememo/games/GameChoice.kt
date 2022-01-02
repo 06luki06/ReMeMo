@@ -3,8 +3,11 @@ package com.example.rememo.games
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rememo.R
 import com.example.rememo.databinding.GamesBinding
 import com.example.rememo.games.gamechoices.MemoryGame
 import com.example.rememo.games.gamechoices.MotivityGame
@@ -12,7 +15,7 @@ import com.example.rememo.games.gamechoices.ReactionGame
 import com.example.rememo.highscore.HighscoreGames
 import com.example.rememo.settings.Settings
 
-class GameChoice : AppCompatActivity() {
+class GameChoice : AppCompatActivity(){
 
     private lateinit var bindingGames : GamesBinding
 
