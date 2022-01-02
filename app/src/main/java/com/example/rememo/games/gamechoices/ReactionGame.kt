@@ -12,9 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.rememo.R
-import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayReaction
-import com.example.rememo.games.memorylvls.*
 import com.example.rememo.games.reactionlvls.*
 
 class ReactionGame : AppCompatActivity(){
@@ -35,7 +33,7 @@ class ReactionGame : AppCompatActivity(){
     }
 
     private fun goToHowToPlayReaction() {
-        val intent : Intent = Intent(this, HowToPlayReaction::class.java)
+        val intent = Intent(this, HowToPlayReaction::class.java)
         startIntent(intent)
     }
 
@@ -43,14 +41,11 @@ class ReactionGame : AppCompatActivity(){
         var intent: Intent? = null
 
         when (lvl) {
-            1 -> intent = Intent(this, Reaction_lvl1::class.java)
-            2 -> intent = Intent(this, Reaction_lvl2::class.java)
-            3 -> intent = Intent(this, Reaction_lvl3::class.java)
-            4 -> intent = Intent(this, Reaction_lvl4::class.java)
-            5 -> intent = Intent(this, Reaction_lvl5::class.java)
-            else -> { // Note the block
-                print("this level does not exist")
-            }
+            1 -> intent = Intent(this, ReactionLvl1::class.java)
+            2 -> intent = Intent(this, ReactionLvl2::class.java)
+            3 -> intent = Intent(this, ReactionLvl3::class.java)
+            4 -> intent = Intent(this, ReactionLvl4::class.java)
+            5 -> intent = Intent(this, ReactionLvl5::class.java)
         }
         startIntent(intent)
     }
@@ -59,8 +54,9 @@ class ReactionGame : AppCompatActivity(){
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
+            val txt : String = e.stackTraceToString()
             Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
+                applicationContext, txt, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -114,7 +110,7 @@ class ReactionGame : AppCompatActivity(){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Everything done!")
             builder.setMessage("Great, you have passed all leveles. Good job!!")
-            builder.setPositiveButton("Play Levels again"){dialog, which ->
+            builder.setPositiveButton("Play Levels again"){dialog, _ ->
                 dialog.dismiss()
             }.show()
             mp.start()

@@ -4,13 +4,12 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 
-class Memory_game_engine : AppCompatActivity() {
+class MemoryGameEngine : AppCompatActivity() {
 
     private var result: String = ""
 
     private fun selectRandomButtons(buttonchoice: Array<String>, howMuch : Int): ArrayList<String> {
         var randomNumber: Int
-
         val buttons = ArrayList<String>()
 
         for (i in 0 until howMuch) {

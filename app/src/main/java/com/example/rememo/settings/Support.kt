@@ -28,13 +28,7 @@ class Support : AppCompatActivity(){
                 putExtra(Intent.EXTRA_SUBJECT, "SUPPORT-Anfrage ReMeMo")
             }
         }
-        
-        try {
-            startActivity(mailIntent)
-        }catch (e: ActivityNotFoundException){
-            Toast.makeText(
-                applicationContext, "Mail konnte nicht gesendet werden", Toast.LENGTH_LONG).show()
-        }
+        startIntent(mailIntent)
     }
 
     private fun sendMailToVanessa(){
@@ -43,13 +37,7 @@ class Support : AppCompatActivity(){
                 putExtra(Intent.EXTRA_SUBJECT, "SUPPORT-Anfrage ReMeMo")
             }
         }
-
-        try {
-            startActivity(mailIntent)
-        }catch (e: ActivityNotFoundException){
-            Toast.makeText(
-                applicationContext, "Mail konnte nicht gesendet werden", Toast.LENGTH_LONG).show()
-        }
+        startIntent(mailIntent)
     }
 
     private fun sendMailToLukas(){
@@ -58,9 +46,12 @@ class Support : AppCompatActivity(){
                 putExtra(Intent.EXTRA_SUBJECT, "SUPPORT-Anfrage ReMeMo")
             }
         }
+        startIntent(mailIntent)
+    }
 
+    private fun startIntent(intent: Intent){
         try {
-            startActivity(mailIntent)
+            startActivity(intent)
         }catch (e: ActivityNotFoundException){
             Toast.makeText(
                 applicationContext, "Mail konnte nicht gesendet werden", Toast.LENGTH_LONG).show()

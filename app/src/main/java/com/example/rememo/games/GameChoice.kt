@@ -3,11 +3,8 @@ package com.example.rememo.games
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rememo.R
 import com.example.rememo.databinding.GamesBinding
 import com.example.rememo.games.gamechoices.MemoryGame
 import com.example.rememo.games.gamechoices.MotivityGame
@@ -31,58 +28,32 @@ class GameChoice : AppCompatActivity(){
         bindingGames.btGoToReaction.setOnClickListener{goToReaction()}
     }
 
-    fun goToHighscoreGames(){
-
-        val intent: Intent = Intent(this, HighscoreGames::class.java)
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
+    private fun goToHighscoreGames(){
+        val intent = Intent(this, HighscoreGames::class.java)
+        startIntent(intent)
     }
 
-    fun goToSettings(){
-
-        val intent: Intent = Intent(this, Settings::class.java)
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
+    private fun goToSettings(){
+        val intent = Intent(this, Settings::class.java)
+        startIntent(intent)
     }
 
-    fun goToMemory(){
-
-        val intent: Intent = Intent(this, MemoryGame::class.java)
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
+    private fun goToMemory(){
+        val intent = Intent(this, MemoryGame::class.java)
+        startIntent(intent)
     }
 
-    fun goToMotivity(){
-
-        val intent: Intent = Intent(this, MotivityGame::class.java)
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
+    private fun goToMotivity(){
+        val intent = Intent(this, MotivityGame::class.java)
+        startIntent(intent)
     }
 
-    fun goToReaction(){
+    private fun goToReaction(){
+        val intent = Intent(this, ReactionGame::class.java)
+        startIntent(intent)
+    }
 
-        val intent: Intent = Intent(this, ReactionGame::class.java)
-
+    private fun startIntent(intent: Intent){
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {

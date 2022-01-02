@@ -112,7 +112,7 @@ class MemoryGame : AppCompatActivity(){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Everything done!")
             builder.setMessage("Great, you have passed all leveles. Good job!!")
-            builder.setPositiveButton("Play Levels again"){dialog, which ->
+            builder.setPositiveButton("Play Levels again"){dialog, _ ->
                 dialog.dismiss()
             }.show()
             mp.start()
