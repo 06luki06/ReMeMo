@@ -161,12 +161,12 @@ class Settings : AppCompatActivity(){
 
         if(lang == "de"){
             german.setBackgroundColor(Color.GRAY)
-            english.setBackgroundColor(Color.WHITE)
+            english.setBackgroundColor(Color.TRANSPARENT)
         }
 
         if(lang == "en"){
             english.setBackgroundColor(Color.GRAY)
-            german.setBackgroundColor(Color.WHITE)
+            german.setBackgroundColor(Color.TRANSPARENT)
         }
     }
 }

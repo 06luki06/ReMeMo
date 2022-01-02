@@ -113,7 +113,7 @@ class Reaction_lvl2 : AppCompatActivity(), View.OnClickListener, Runnable {
             }else{
                 clapping.start()
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Level 1")
+                builder.setTitle("Level 2")
                 builder.setMessage("Great, you have nailed it")
                 builder.setNeutralButton("go back to the levels"){dialog, which ->
                     val intent : Intent = Intent(this, ReactionGame::class.java)
@@ -176,10 +176,10 @@ class Reaction_lvl2 : AppCompatActivity(), View.OnClickListener, Runnable {
 
     private fun gameOverScreen(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Level 1")
+        builder.setTitle("Level 2")
         builder.setMessage("Oops, you did a poor job")
         builder.setNeutralButton("Try Again"){dialog, which ->
-            val intent : Intent = Intent(this, Reaction_lvl1::class.java)
+            val intent : Intent = Intent(this, Reaction_lvl2::class.java)
             startIntent(intent)
         }.show()
     }
