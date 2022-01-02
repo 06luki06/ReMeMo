@@ -20,7 +20,7 @@ class Memory_lvl3 : AppCompatActivity(){
 
     private lateinit var mp : MediaPlayer
     private lateinit var bindingMemorylvl3 : MemoryLvl3Binding
-    private val gameEngine = Memory_game_engine()
+    private val gameEngine = MemoryGameEngine()
 
     private lateinit var  buttonArray: ArrayList<Button>
     private val buttonChoice = arrayOf("1", "2", "3", "4", "5", "6", "7", "8")

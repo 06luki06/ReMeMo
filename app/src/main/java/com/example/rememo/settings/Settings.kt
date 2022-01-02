@@ -22,34 +22,33 @@ class Settings : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         bindingSettings = SettingsBinding.inflate(layoutInflater)
         setContentView(bindingSettings.root)
-        var prefs: SharedPreferences = getSharedPreferences("Soundsettings", 0)
+        val prefs: SharedPreferences = getSharedPreferences("Soundsettings", 0)
 
         bindingSettings.btSettingsSupport.setOnClickListener { goToSupport() }
         bindingSettings.btSettingCredits.setOnClickListener { goToCredits() }
         bindingSettings.btVolumeUp.setOnClickListener { setVolumeUp(prefs) }
         bindingSettings.btVolumeDown.setOnClickListener { setVolumeDown(prefs) }
         bindingSettings.btSettingsReset.setOnClickListener { resetTheGame() }
-        val iv_german : ImageView = bindingSettings.iVSettingsGerman
-        val iv_english : ImageView = bindingSettings.iVSettingsEnglish
+        val ivGerman : ImageView = bindingSettings.iVSettingsGerman
+        val ivEnglish : ImageView = bindingSettings.iVSettingsEnglish
 
-        checkLanguage(iv_german, iv_english)
+        checkLanguage(ivGerman, ivEnglish)
         showPicture(prefs)
     }
 
     private fun goToSupport() {
-        val intent: Intent = Intent(this, Support::class.java)
-        startIntent(intent)
+        val intent = Intent(this, Support::class.java)
+        startIntent(intent, false)
     }
 
     private fun goToCredits() {
-        val intent: Intent = Intent(this, Credits::class.java)
-        startIntent(intent)
+        val intent = Intent(this, Credits::class.java)
+        startIntent(intent, false)
     }
 
-    private fun setVolumeDown(prefs : SharedPreferences){
-        if(prefs.getInt("Sound", -1) == 0){
-        }else{
-            var sound : Int = prefs.getInt("Sound", -1)
+    private fun setVolumeDown(prefs : SharedPreferences) {
+        var sound: Int = prefs.getInt("Sound", -1)
+        if (sound != 0) {
             sound--
             writeIntoSharedPrefs(sound, prefs)
         }
@@ -57,10 +56,8 @@ class Settings : AppCompatActivity(){
 
     private fun setVolumeUp(prefs : SharedPreferences){
         var sound : Int = prefs.getInt("Sound", -1)
-
-        if(prefs.getInt("Sound", -1) == 3){
-        }else{
-            when(prefs.getInt("Sound", -1)){
+        if(prefs.getInt("Sound", -1) != 3){
+            when(sound){
                 -1 -> sound += 2
                 else -> sound++
             }
@@ -76,7 +73,6 @@ class Settings : AppCompatActivity(){
 
         showPicture(prefs)
     }
-
 
     private fun showPicture(prefs: SharedPreferences){
         val soundNumber : Int = prefs.getInt("Sound", -1)
@@ -127,7 +123,10 @@ class Settings : AppCompatActivity(){
 
     private fun resetTheGame(){
         val memorySP : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
-        val intent : Intent = Intent(this, StartScreen::class.java)
+        val reactionSP : SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
+        val intent = Intent(this, StartScreen::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Hawara")
@@ -137,9 +136,12 @@ class Settings : AppCompatActivity(){
                 .edit()
                 .clear()
                 .apply()
+            reactionSP
+                .edit()
+                .clear()
+                .apply()
 
-            finish()
-            startActivity(intent)
+            startIntent(intent, true)
         }.show()
 
         builder.setNegativeButton("Ne doch nicht"){_, _ ->
@@ -147,7 +149,11 @@ class Settings : AppCompatActivity(){
         }.show()
     }
 
-    private fun startIntent(intent: Intent){
+    private fun startIntent(intent: Intent, finish : Boolean){
+        if (finish){
+            finishAffinity()
+        }
+
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {

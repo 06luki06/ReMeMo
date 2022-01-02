@@ -3,16 +3,15 @@ package com.example.rememo.games.pauseScreens
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rememo.R
 import com.example.rememo.databinding.PauseScreenBinding
 import com.example.rememo.games.GameChoice
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayMotivity
 import com.example.rememo.games.howtoplay.HowToPlayReaction
-import com.example.rememo.games.memorylvls.*
 import com.example.rememo.settings.Settings
 
 class Pause : AppCompatActivity(){
@@ -34,7 +33,7 @@ class Pause : AppCompatActivity(){
     }
 
     private fun goToHowToPlay(game: String?) {
-
+        var intent : Intent? = null
         when (game) {
             "memory" -> intent = Intent(this, HowToPlayMemory::class.java)
             "motivity" -> intent = Intent(this, HowToPlayMotivity::class.java)
@@ -43,24 +42,30 @@ class Pause : AppCompatActivity(){
                 print("this game does not exist")
             }
         }
-        startActivity(intent)
+        startIntent(intent, false)
     }
 
     private fun goToSettings(){
-        startActivity(Intent(this, Settings::class.java))
+        val intent = Intent(this, Settings::class.java)
+        startIntent(intent, false)
     }
 
     private fun goToGameChoice(){
-        startIntent(Intent(this, GameChoice::class.java))
+        val intent = Intent(this, GameChoice::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startIntent(intent, true)
     }
 
     private fun returnToGame(){
         onBackPressed()
     }
 
-    private fun startIntent(intent: Intent){
-        try {
+    private fun startIntent(intent: Intent?, finish : Boolean){
+        if(finish){
             finish()
+        }
+
+        try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
@@ -72,11 +77,11 @@ class Pause : AppCompatActivity(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Level neustarten")
         builder.setMessage("Willst du wirklich das Level neustarten?")
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setPositiveButton(R.string.yes) { _, _ ->
             Toast.makeText(applicationContext, "UNDER CONSTRUCTION", Toast.LENGTH_LONG).show()
         }.show()
 
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+        builder.setNegativeButton(R.string.no) {_, _->
             onBackPressed()
         }.show()
     }
