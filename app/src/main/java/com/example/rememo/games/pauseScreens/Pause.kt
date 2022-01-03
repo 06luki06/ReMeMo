@@ -1,7 +1,5 @@
 package com.example.rememo.games.pauseScreens
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -9,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.databinding.PauseScreenBinding
 import com.example.rememo.games.GameChoice
+import com.example.rememo.games.helperClasses.ContextHelper
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayMotivity
 import com.example.rememo.games.howtoplay.HowToPlayReaction
@@ -17,6 +16,7 @@ import com.example.rememo.settings.Settings
 class Pause : AppCompatActivity(){
 
     private lateinit var bindingPause : PauseScreenBinding
+    private var contextHelper = ContextHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,44 +33,27 @@ class Pause : AppCompatActivity(){
     }
 
     private fun goToHowToPlay(game: String?) {
-        var intent : Intent? = null
+        var c : Class<*>? = null
         when (game) {
-            "memory" -> intent = Intent(this, HowToPlayMemory::class.java)
-            "motivity" -> intent = Intent(this, HowToPlayMotivity::class.java)
-            "reaction" -> intent = Intent(this, HowToPlayReaction::class.java)
-            else -> {
-                print("this game does not exist")
-            }
+            "memory" -> c = HowToPlayMemory::class.java
+            "motivity" -> c = HowToPlayMotivity::class.java
+            "reaction" -> c = HowToPlayReaction::class.java
         }
-        startIntent(intent, false)
+        if(c != null){
+            contextHelper.startIntent(c, false, flag = false)
+        }
     }
 
     private fun goToSettings(){
-        val intent = Intent(this, Settings::class.java)
-        startIntent(intent, false)
+        contextHelper.startIntent(Settings::class.java, false, flag = false)
     }
 
     private fun goToGameChoice(){
-        val intent = Intent(this, GameChoice::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startIntent(intent, true)
+        contextHelper.startIntent(GameChoice::class.java, true, flag = true)
     }
 
     private fun returnToGame(){
         onBackPressed()
-    }
-
-    private fun startIntent(intent: Intent?, finish : Boolean){
-        if(finish){
-            finish()
-        }
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun restartGame(){

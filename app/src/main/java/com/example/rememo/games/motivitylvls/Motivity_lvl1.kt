@@ -10,14 +10,14 @@ import com.example.rememo.games.pauseScreens.Pause
 
 class Motivity_lvl1 : AppCompatActivity(){
 
-    private lateinit var bindingMotivity_lvl1 : MotivityLvl1Binding
+    private lateinit var bindingMotivityLvl1 : MotivityLvl1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingMotivity_lvl1= MotivityLvl1Binding.inflate(layoutInflater)
-        setContentView(bindingMotivity_lvl1.root)
+        bindingMotivityLvl1= MotivityLvl1Binding.inflate(layoutInflater)
+        setContentView(bindingMotivityLvl1.root)
 
-        bindingMotivity_lvl1.iBPauseScreen.setOnClickListener{goToPause()}
+        bindingMotivityLvl1.iBPauseScreen.setOnClickListener{goToPause()}
 
     }
 
