@@ -3,20 +3,19 @@ package com.example.rememo.settings
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.databinding.SettingsBinding
-import android.content.ActivityNotFoundException
-import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.rememo.StartScreen
 import com.example.rememo.R
+import com.example.rememo.games.helperClasses.ContextHelper
 import java.util.*
 
 class Settings : AppCompatActivity(){
 
     private lateinit var bindingSettings : SettingsBinding
+    private var contextHelper = ContextHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +36,11 @@ class Settings : AppCompatActivity(){
     }
 
     private fun goToSupport() {
-        val intent = Intent(this, Support::class.java)
-        startIntent(intent, false)
+        contextHelper.startIntent(Support::class.java, false, flag = false)
     }
 
     private fun goToCredits() {
-        val intent = Intent(this, Credits::class.java)
-        startIntent(intent, false)
+        contextHelper.startIntent(Credits::class.java, false, flag = false)
     }
 
     private fun setVolumeDown(prefs : SharedPreferences) {
@@ -124,9 +121,6 @@ class Settings : AppCompatActivity(){
     private fun resetTheGame(){
         val memorySP : SharedPreferences = getSharedPreferences("Levels_Memory", 0)
         val reactionSP : SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
-        val intent = Intent(this, StartScreen::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Hawara")
@@ -141,25 +135,12 @@ class Settings : AppCompatActivity(){
                 .clear()
                 .apply()
 
-            startIntent(intent, true)
+            contextHelper.startIntent(StartScreen::class.java, true, flag = true)
         }.show()
 
         builder.setNegativeButton("Ne doch nicht"){_, _ ->
             onBackPressed()
         }.show()
-    }
-
-    private fun startIntent(intent: Intent, finish : Boolean){
-        if (finish){
-            finishAffinity()
-        }
-
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun checkLanguage(german : ImageView, english : ImageView){

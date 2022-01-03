@@ -1,8 +1,5 @@
 package com.example.rememo.games.reactionlvls
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -12,21 +9,20 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.databinding.ReactionLvl4Binding
-import com.example.rememo.games.gamechoices.ReactionGame
-import com.example.rememo.games.pauseScreens.Pause
+import com.example.rememo.databinding.ReactionLvl5Binding
 import java.util.*
 import kotlin.math.roundToInt
 
 class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
 
-    private lateinit var bindingReactionLvl4 : ReactionLvl4Binding
+    private lateinit var bindingReactionLvl5 : ReactionLvl5Binding
     private lateinit var gameboard : ViewGroup
     private val handler : Handler = Handler()
+    private val gameEngine = ReactionGameEngine(this)
+    private lateinit var lvl : String
 
     private var gameAlreadyStarted : Boolean = false
     private var isPaused : Boolean = false
@@ -36,39 +32,27 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
     private var caughtFlies : Int = 0
     private val highestAge : Long = 200
 
-    private var time : Int = 20
+    private var time : Int = 30
     private var scale : Float = 0F
     private var randomNumberGenerator : Random = Random()
 
-    private lateinit var clapping : MediaPlayer
     private lateinit var sum : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingReactionLvl4= ReactionLvl4Binding.inflate(layoutInflater)
-        setContentView((bindingReactionLvl4.root))
-        bindingReactionLvl4.iBPauseScreen.setOnClickListener{goToPause()}
+        bindingReactionLvl5= ReactionLvl5Binding.inflate(layoutInflater)
+        setContentView((bindingReactionLvl5.root))
+        bindingReactionLvl5.iBPauseScreen.setOnClickListener{gameEngine.goToPause()}
 
         scale = resources.displayMetrics.density
-        gameboard = bindingReactionLvl4.FLGameboard
+        gameboard = bindingReactionLvl5.FLGameboard
+        lvl = getString(R.string.bt_lv5)
 
         sum = MediaPlayer.create(this, R.raw.summen)
-        clapping = MediaPlayer.create(this, R.raw.clapping)
 
-        fullScreen()
+        gameEngine.fullScreen(window)
+        gameEngine.initData(time, caughtFlies, fliesToHit)
         startGame()
-    }
-
-    private fun goToPause(){
-        val intent = Intent(this, Pause::class.java)
-        val game = "reaction"
-        intent.putExtra("game", game)
-        startActivity(intent)
-        hasBeenPaused()
-    }
-
-    private fun hasBeenPaused(){
-        isPaused = true
     }
 
     private fun startGame(){
@@ -79,29 +63,29 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     private fun updateScreen(){
-        val tvFliesLeft : TextView = bindingReactionLvl4.tVFlysLeft
+        val tvFliesLeft : TextView = bindingReactionLvl5.tVFlysLeft
         tvFliesLeft.text = fliesToHit.toString()
 
-        val tvCaughtFlies : TextView = bindingReactionLvl4.tVCatchedFlies
+        val tvCaughtFlies : TextView = bindingReactionLvl5.tVCatchedFlies
         tvCaughtFlies.text = caughtFlies.toString()
 
-        val tVTimeLeft : TextView = bindingReactionLvl4.tVTimeLeft
+        val tVTimeLeft : TextView = bindingReactionLvl5.tVTimeLeft
         tVTimeLeft.text = time.toString()
 
-        val barFliesLeft : FrameLayout = bindingReactionLvl4.FLCatchedFlys
-        val barTimeLeft : FrameLayout = bindingReactionLvl4.FLTimeLeft
+        val barFliesLeft : FrameLayout = bindingReactionLvl5.FLCatchedFlys
+        val barTimeLeft : FrameLayout = bindingReactionLvl5.FLTimeLeft
 
         val lpCaught : ViewGroup.LayoutParams = barFliesLeft.layoutParams
         lpCaught.width = (scale * 300 * caughtFlies.coerceAtMost(flies) / flies).roundToInt()
 
         val lpTime : ViewGroup.LayoutParams = barTimeLeft.layoutParams
-        lpTime.width = (scale * time * 300 / 20).roundToInt()
+        lpTime.width = (scale * time * 300 / 30).roundToInt()
     }
 
     private fun countdownTIme(){
         time--
         val randomNumber : Float = randomNumberGenerator.nextFloat()
-        val probability : Double = flies * 3.0 / 30
+        val probability : Double = flies * 2.0 / 30
 
         if(probability > 1){
             showFlies()
@@ -117,11 +101,11 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
         letFliesDisappear()
         updateScreen()
 
-        if(!failedLevel()){
-            if(!checkIfLevelPassed()){
+        if(!gameEngine.failedLevel(time, caughtFlies, lvl, ReactionLvl5::class.java)){
+            if(!gameEngine.checkIfLevelPassed(caughtFlies)){
                 handler.postDelayed(this, 1000)
             }else{
-                levelPassed()
+                gameEngine.levelPassed(lvl, "lvl_5_checked")
             }
         }
     }
@@ -165,67 +149,6 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
         }
     }
 
-    private fun failedLevel() : Boolean{
-        return if(time == 0 && caughtFlies < flies){
-            gameOverScreen()
-            true
-        }else{
-            false
-        }
-    }
-
-    private fun checkIfLevelPassed() : Boolean{
-        return caughtFlies >= flies
-    }
-
-    private fun levelPassed(){
-        clapping.start()
-        writeIntoSharedPrefs()
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(R.string.bt_lv5)
-        builder.setMessage("Great, you have nailed it")
-        builder.setNeutralButton("go back to the levels"){_, _ ->
-            val intent = Intent(this, ReactionGame::class.java)
-            startIntent(intent)
-        }.show()
-    }
-
-    private fun gameOverScreen(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(R.string.bt_lv5)
-        builder.setMessage("Oops, you did a poor job")
-        builder.setNeutralButton("Try Again"){_, _ ->
-            val intent = Intent(this, ReactionLvl5::class.java)
-            startIntent(intent)
-        }.show()
-    }
-
-    private fun writeIntoSharedPrefs(){
-        val lvl = "lvl_5_checked"
-        val prefs : SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
-        prefs
-            .edit()
-            .putString(lvl, "true")
-            .apply()
-    }
-
-    private fun fullScreen() {
-        val decorView = window.decorView
-        val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        decorView.systemUiVisibility = uiOptions
-    }
-
-    private fun startIntent(intent: Intent){
-        try {
-            finish()
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
-    }
-
     override fun onClick(v: View?) {
         caughtFlies++
         fliesToHit--
@@ -238,14 +161,13 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
         countdownTIme()
     }
 
-    override fun onDestroy(){
-        sum.release()
-        clapping.release()
-        super.onDestroy()
-    }
-
     override fun onBackPressed() {
         isPaused = false
         super.onBackPressed()
+    }
+
+    override fun onDestroy(){
+        sum.release()
+        super.onDestroy()
     }
 }

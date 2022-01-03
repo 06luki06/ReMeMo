@@ -1,19 +1,18 @@
 package com.example.rememo
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import com.example.rememo.databinding.ActivityMainBinding
 import com.example.rememo.games.GameChoice
+import com.example.rememo.games.helperClasses.ContextHelper
 
 class StartScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var animationFading : Animation
+    private val contextHelper = ContextHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +25,6 @@ class StartScreen : AppCompatActivity() {
     }
 
     private fun goToGames() {
-        val intent = Intent(this, GameChoice::class.java)
-        startIntent(intent)
-    }
-
-    private fun startIntent(intent: Intent){
-        try {
-            finish()
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(
-                applicationContext, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
-        }
+        contextHelper.startIntent(GameChoice::class.java, true, flag = false)
     }
 }
