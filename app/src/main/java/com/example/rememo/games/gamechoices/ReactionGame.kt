@@ -8,6 +8,7 @@ import com.example.rememo.databinding.GameReactionBinding
 import com.example.rememo.games.helperClasses.ContextHelper
 import com.example.rememo.games.helperClasses.GameChoiceHelper
 import com.example.rememo.games.howtoplay.HowToPlayReaction
+import com.example.rememo.highscore.ReactionHighscore
 
 class ReactionGame : AppCompatActivity(){
 
@@ -21,6 +22,9 @@ class ReactionGame : AppCompatActivity(){
         setContentView(bindingReactionGame.root)
 
         bindingReactionGame.iBHowToPlayReaction.setOnClickListener{goToHowToPlayMemory()}
+        bindingReactionGame.iBHighscoreLinkLvlsReaction.setOnClickListener {
+            contextHelper.startIntent(ReactionHighscore::class.java,false,flag=false)
+        }
 
         val lvl1 : Button = bindingReactionGame.btReactionLv1
         val lvl2 : Button = bindingReactionGame.btReactionLv2

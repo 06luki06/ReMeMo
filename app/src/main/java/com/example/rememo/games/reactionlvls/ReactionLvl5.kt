@@ -43,7 +43,8 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
         super.onCreate(savedInstanceState)
         bindingReactionLvl5= ReactionLvl5Binding.inflate(layoutInflater)
         setContentView((bindingReactionLvl5.root))
-        bindingReactionLvl5.iBPauseScreen.setOnClickListener{gameEngine.goToPause(this.javaClass)}
+        bindingReactionLvl5.iBPauseScreen.setOnClickListener{gameEngine.goToPause(this.javaClass)
+        isPaused=true}
 
         scale = resources.displayMetrics.density
         gameboard = bindingReactionLvl5.FLGameboard
@@ -85,7 +86,9 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     private fun countdownTIme(){
-        time--
+        if(!isPaused) {
+            time--
+        }
         val randomNumber : Float = randomNumberGenerator.nextFloat()
         val probability : Double = flies * 2.0 / 30
 
@@ -158,6 +161,7 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     override fun onClick(v: View?) {
+        isPaused = false
         caughtFlies++
         fliesToHit--
         updateScreen()

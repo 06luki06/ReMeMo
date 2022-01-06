@@ -89,7 +89,9 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     private fun countdownTIme(){
+        if(!isPaused) {
             time--
+        }
             val randomNumber: Float = randomNumberGenerator.nextFloat()
             val probability: Double = flies * 1.5 / 40
 
@@ -163,6 +165,7 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     override fun onClick(v: View?) {
+        isPaused= false
         caughtFlies++
         fliesToHit--
         updateScreen()
@@ -171,19 +174,9 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     override fun run(){
-        if(isPaused) {
-            isPaused = gameEngine.endPause()
-
-            thread { Thread.sleep(2000)
-                if(!isPaused){
-                    run()
-                }
-            }
-
-        }else {
             countdownTIme()
-        }
     }
+
     override fun onDestroy(){
         sum.release()
         super.onDestroy()

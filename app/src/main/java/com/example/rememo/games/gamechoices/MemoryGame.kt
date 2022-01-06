@@ -8,6 +8,7 @@ import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.databinding.GameMemoryBinding
 import com.example.rememo.games.helperClasses.ContextHelper
 import com.example.rememo.games.helperClasses.GameChoiceHelper
+import com.example.rememo.highscore.MemoryHighscore
 
 class MemoryGame : AppCompatActivity(){
 
@@ -21,6 +22,7 @@ class MemoryGame : AppCompatActivity(){
         setContentView(bindingMemoryGame.root)
 
         bindingMemoryGame.iBHowToPlayMemory.setOnClickListener{goToHowToPlayMemory()}
+        bindingMemoryGame.iBHighscoreLinkLvlsMemory.setOnClickListener{contextHelper.startIntent(MemoryHighscore::class.java,false,flag =false)}
 
         val lvl1 : Button = bindingMemoryGame.btMemoryLv1
         val lvl2 : Button = bindingMemoryGame.btMemoryLv2

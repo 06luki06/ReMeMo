@@ -12,15 +12,13 @@ class ContextHelper(context : Context) : AppCompatActivity(){
     fun startIntent(c : Class<*>, finish : Boolean, flag : Boolean?){
         val intent = Intent(con, c)
 
-        if(finish){
-            finishAndRemoveTask()
-        }
+
 
         if(flag == true){
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        powerIntent(intent)
+        powerIntent(intent,finish)
     }
 
     fun gameIntent(game : String, c : Class<*>, c2 : Class<*>?){
@@ -29,11 +27,14 @@ class ContextHelper(context : Context) : AppCompatActivity(){
         if(c2 != null){
             intent.putExtra("level", c2)
         }
-        powerIntent(intent)
+        powerIntent(intent,finish = false)
     }
 
-    private fun powerIntent(intent : Intent){
+    private fun powerIntent(intent : Intent, finish: Boolean){
         try {
+            if(finish){
+               this.finish()
+            }
             con.startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
