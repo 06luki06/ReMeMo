@@ -11,10 +11,12 @@ import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import com.example.rememo.R
 import com.example.rememo.games.gamechoices.ReactionGame
+import com.example.rememo.games.helperClasses.DialogHelper
 
 class ReactionGameEngine(context : Context) : AppCompatActivity(){
     private val con = context
     private var contextHelper = ContextHelper(con)
+    private var dialogHelper = DialogHelper(con)
     private lateinit var clapping : MediaPlayer
     private var timeTotal : Int = 0
     private var caughtFlies : Int = 0
@@ -65,13 +67,23 @@ class ReactionGameEngine(context : Context) : AppCompatActivity(){
         }.show()
     }
 
-    fun fullScreen(window : Window) {
+    fun fullScreen(window : Window, prefs: SharedPreferences) {
         clapping = MediaPlayer.create(con, R.raw.clapping)
+        setSound(prefs)
         val win = window
         val decorView = win.decorView
         val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         decorView.systemUiVisibility = uiOptions
     }
+
+    private fun setSound(prefs : SharedPreferences){
+
+        val min : Int = prefs.getInt("soundMin", 0)
+        val max : Int = prefs.getInt("soundMax", 0)
+
+        clapping.setVolume(min.toFloat(), max.toFloat())
+    }
+
 
     private fun writeIntoSharedPrefs(lvl : String){
         val prefs : SharedPreferences = con.getSharedPreferences("Levels_Reaction", 0)
@@ -81,8 +93,14 @@ class ReactionGameEngine(context : Context) : AppCompatActivity(){
             .apply()
     }
 
+    fun endPause(): Boolean {
+        return dialogHelper.continueGame("level 1", "wüsst wiakli weita doa?", "jo")
+    }
+
     override fun onDestroy(){
         clapping.release()
         super.onDestroy()
     }
+
+
 }

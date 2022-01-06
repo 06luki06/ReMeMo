@@ -1,5 +1,6 @@
 package com.example.rememo.games.reactionlvls
 
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -48,8 +49,9 @@ class ReactionLvl2 : AppCompatActivity(), View.OnClickListener, Runnable {
         lvl = getString(R.string.bt_lv2)
 
         sum = MediaPlayer.create(this, R.raw.summen)
-
-        gameEngine.fullScreen(window)
+        val prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
+        setSoundFly(prefs)
+        gameEngine.fullScreen(window, prefs)
         gameEngine.initData(time, caughtFlies, fliesToHit)
         startGame()
     }
@@ -60,6 +62,8 @@ class ReactionLvl2 : AppCompatActivity(), View.OnClickListener, Runnable {
         updateScreen()
         handler.postDelayed(this, 1000)
     }
+
+
 
     private fun updateScreen(){
         val tvFliesLeft : TextView = bindingReactionLvl2.tVFlysLeft
@@ -146,6 +150,12 @@ class ReactionLvl2 : AppCompatActivity(), View.OnClickListener, Runnable {
                 number++
             }
         }
+    }
+
+    private fun setSoundFly(prefs : SharedPreferences){
+        val min : Int = prefs.getInt("soundMin", 0)
+        val max : Int = prefs.getInt("soundMax", 0)
+        sum.setVolume(min.toFloat(), max.toFloat())
     }
 
     override fun onClick(v: View?) {

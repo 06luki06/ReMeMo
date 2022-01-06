@@ -1,5 +1,6 @@
 package com.example.rememo.games.reactionlvls
 
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.databinding.ReactionLvl1Binding
 import java.util.*
+import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
 class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
@@ -41,15 +43,20 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
         super.onCreate(savedInstanceState)
         bindingReactionLvl1= ReactionLvl1Binding.inflate(layoutInflater)
         setContentView((bindingReactionLvl1.root))
-        bindingReactionLvl1.iBPauseScreen.setOnClickListener{gameEngine.goToPause(this.javaClass)}
+
+        bindingReactionLvl1.iBPauseScreen.setOnClickListener{
+            gameEngine.goToPause(this.javaClass)
+            isPaused = true }
+
 
         scale = resources.displayMetrics.density
         gameboard = bindingReactionLvl1.FLGameboard
         lvl = getString(R.string.bt_lv1)
 
         sum = MediaPlayer.create(this, R.raw.summen)
-
-        gameEngine.fullScreen(window)
+        val prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
+        setSoundFly(prefs)
+        gameEngine.fullScreen(window, prefs)
         gameEngine.initData(time, caughtFlies, fliesToHit)
         startGame()
     }
@@ -82,31 +89,32 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     private fun countdownTIme(){
-        time--
-        val randomNumber : Float = randomNumberGenerator.nextFloat()
-        val probability : Double = flies * 1.5 / 40
+            time--
+            val randomNumber: Float = randomNumberGenerator.nextFloat()
+            val probability: Double = flies * 1.5 / 40
 
-        if(probability > 1){
-            showFlies()
-            if(randomNumber < probability - 1){
+            if (probability > 1) {
                 showFlies()
+                if (randomNumber < probability - 1) {
+                    showFlies()
+                }
+            } else {
+                if (randomNumber < probability) {
+                    showFlies()
+                }
             }
-        }else{
-            if(randomNumber < probability){
-                showFlies()
-            }
-        }
 
-        letFliesDisappear()
-        updateScreen()
+            letFliesDisappear()
+            updateScreen()
 
-        if(!gameEngine.failedLevel(time, caughtFlies, lvl, ReactionLvl1::class.java)){
-            if(!gameEngine.checkIfLevelPassed(caughtFlies)){
-                handler.postDelayed(this, 1000)
-            }else{
-                gameEngine.levelPassed(lvl, "lvl_1_checked")
+            if (!gameEngine.failedLevel(time, caughtFlies, lvl, ReactionLvl1::class.java)) {
+                if (!gameEngine.checkIfLevelPassed(caughtFlies)) {
+                    handler.postDelayed(this, 1000)
+                } else {
+                    gameEngine.levelPassed(lvl, "lvl_1_checked")
+                }
             }
-        }
+
     }
 
     private fun showFlies(){
@@ -148,6 +156,12 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
         }
     }
 
+    private fun setSoundFly(prefs : SharedPreferences){
+        val min : Int = prefs.getInt("soundMin", 0)
+        val max : Int = prefs.getInt("soundMax", 0)
+        sum.setVolume(min.toFloat(), max.toFloat())
+    }
+
     override fun onClick(v: View?) {
         caughtFlies++
         fliesToHit--
@@ -157,14 +171,19 @@ class ReactionLvl1 : AppCompatActivity(), View.OnClickListener, Runnable {
     }
 
     override fun run(){
-        countdownTIme()
-    }
+        if(isPaused) {
+            isPaused = gameEngine.endPause()
 
-    override fun onBackPressed() {
-        isPaused = false
-        super.onBackPressed()
-    }
+            thread { Thread.sleep(2000)
+                if(!isPaused){
+                    run()
+                }
+            }
 
+        }else {
+            countdownTIme()
+        }
+    }
     override fun onDestroy(){
         sum.release()
         super.onDestroy()
