@@ -2,9 +2,7 @@ package com.example.rememo.games.helperClasses
 
 import androidx.appcompat.app.AlertDialog
 import android.content.Context
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rememo.R
 
 class DialogHelper(context : Context) : AppCompatActivity(){
     private val con = context
@@ -49,5 +47,18 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         builder.setNegativeButton(no) { _, _->
             onBackPressed()
         }.show()
+    }
+
+    fun continueGame(title : String, message : String, button : String) : Boolean{
+        var pauseFinished : Boolean = true
+        val builder = AlertDialog.Builder(con)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton(button) { dialog, _ ->
+            dialog.dismiss()
+            pauseFinished = false
+        }.show()
+
+        return pauseFinished
     }
 }
