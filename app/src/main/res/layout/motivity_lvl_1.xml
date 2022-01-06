@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/iB_pauseScreen"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:background="#5A606A"
+        android:contentDescription="@string/cD_iB_goToPauseScreen"
+        app:srcCompat="@android:drawable/ic_media_pause" />
+
+    <TextView
+        android:id="@+id/tV_motivity_Lvl_1"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="@string/bt_lv1"
+        android:textSize="30sp" />
+
+
+</LinearLayout>

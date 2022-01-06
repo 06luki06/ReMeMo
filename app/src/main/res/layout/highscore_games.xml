@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/highscore_games"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_memory_game"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="@string/tV_headline_highscore_games"
+        android:textSize="30sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tV_highscore_games_infoTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/tV_highscore_games_infoTxt"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_highscore_memory"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/bt_Memory" />
+
+    <Button
+        android:id="@+id/bt_higscore_reaction"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/bt_Reaction" />
+
+    <Button
+        android:id="@+id/bt_highscore_motivity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/bt_Motivity" />
+
+</LinearLayout>

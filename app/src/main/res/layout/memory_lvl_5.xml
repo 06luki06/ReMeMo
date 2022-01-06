@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/iB_pauseScreen"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:background="#5A606A"
+        android:contentDescription="@string/cD_iB_goToPauseScreen"
+        app:srcCompat="@android:drawable/ic_media_pause" />
+
+    <TextView
+        android:id="@+id/tV_memory_Lvl_5"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="@string/bt_lv5"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_1" />
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_2"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_3"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_3" />
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_4"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_5"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_5" />
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_6"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_7"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_7" />
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_8"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_memory_lvl_5_9"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/bt_memory_9" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tV_memory_lv5_Numbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="casual"
+        android:gravity="center_horizontal"
+        android:text="@string/tV_memory_lv1_nextNumber"
+        android:textSize="25sp" />
+</LinearLayout>

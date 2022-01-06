@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/hintergrund"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tV_FlysLeft"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="start"
+            android:background="#5A606A"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <ImageButton
+            android:id="@+id/iB_pauseScreen"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:background="#5A606A"
+            android:contentDescription="@string/cD_iB_goToPauseScreen"
+            app:srcCompat="@android:drawable/ic_media_pause" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_Reaction_Lvl_2"
+        android:layout_width="wrap_content"
+        android:layout_height="82dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@android:color/darker_gray"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/bt_lv2"
+        android:textSize="30sp" />
+
+    <FrameLayout
+        android:id="@+id/FL_gameboard"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tV_catched_Flies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/tV_flies_left" />
+
+            <FrameLayout
+                android:id="@+id/FL_catched_flys"
+                android:layout_width="50dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center_vertical"
+                android:background="#5A606A">
+
+            </FrameLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tV_time_Left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/tV_time_left" />
+
+            <FrameLayout
+                android:id="@+id/FL_time_left"
+                android:layout_width="50dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center_vertical"
+                android:background="#5A606A">
+
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
