@@ -22,8 +22,6 @@ class StartScreen : AppCompatActivity() {
         binding.iBGoToPlayChoice.setOnClickListener{goToGames()}
         animationFading = AnimationUtils.loadAnimation(this, R.anim.faden)
         binding.homeSite.startAnimation(animationFading)
-        //fasdfasdf
-        //rrrrrr
     }
 
     private fun goToGames() {
