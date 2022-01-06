@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.games.gamechoices.LvlDesign
@@ -16,6 +15,7 @@ class GameChoiceHelper(context : Context) : AppCompatActivity() {
     private val con = context
     private var lvlDesign = LvlDesign()
     private var contextHelper = ContextHelper(con)
+    private val dialogHelper = DialogHelper(con)
     private lateinit var mp : MediaPlayer
     private var gameFinal : String = ""
 
@@ -64,12 +64,7 @@ class GameChoiceHelper(context : Context) : AppCompatActivity() {
             if (preferences.getString("lvl_5_checked", "false").equals("true")) {
                 lvlDesign.lvlMastered(lvls[4])
                 activateLvl(5, lvls[4])
-                val builder = AlertDialog.Builder(con)
-                builder.setTitle("Everything done!")
-                builder.setMessage("Great, you have passed all leveles. Good job!!")
-                builder.setPositiveButton("Play Levels again") { dialog, _ ->
-                    dialog.dismiss()
-                }.show()
+                dialogHelper.levelsCompleted("Good job!", "good job guy", "play levels again")
                 mp.start()
             }
         }

@@ -21,8 +21,8 @@ class ReactionGameEngine(context : Context) : AppCompatActivity(){
     private var fliesToHit : Int = 0
 
 
-    fun goToPause(){
-        contextHelper.gameIntent("reaction", Pause::class.java)
+    fun goToPause(c : Class<*>){
+        contextHelper.gameIntent("reaction", Pause::class.java, c)
     }
 
     fun initData(t : Int , cF : Int, fTH : Int){

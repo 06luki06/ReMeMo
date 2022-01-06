@@ -41,7 +41,7 @@ class ReactionLvl3 : AppCompatActivity(), View.OnClickListener, Runnable {
         super.onCreate(savedInstanceState)
         bindingReactionLvl3= ReactionLvl3Binding.inflate(layoutInflater)
         setContentView((bindingReactionLvl3.root))
-        bindingReactionLvl3.iBPauseScreen.setOnClickListener{gameEngine.goToPause()}
+        bindingReactionLvl3.iBPauseScreen.setOnClickListener{gameEngine.goToPause(this.javaClass)}
 
         scale = resources.displayMetrics.density
         gameboard = bindingReactionLvl3.FLGameboard

@@ -34,7 +34,7 @@ class MemoryLvl4 : AppCompatActivity(){
 
         result = gameEngine.saveAsString(buttonChoice, howMuch)
 
-        bindingMemorylvl4.iBPauseScreen.setOnClickListener{gameEngine.goToPause()}
+        bindingMemorylvl4.iBPauseScreen.setOnClickListener{gameEngine.goToPause(this.javaClass)}
         val title : String = getString(R.string.bt_lv4)
 
         val button1 = bindingMemorylvl4.btMemoryLvl41

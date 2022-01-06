@@ -75,4 +75,5 @@
     <string name="tV_time_left">Time Left</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="allLevelsPassedMessage">"Great, you have passed all leveles. Good job!!"</string>
 </resources>
