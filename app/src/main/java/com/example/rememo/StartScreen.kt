@@ -23,6 +23,7 @@ class StartScreen : AppCompatActivity() {
         animationFading = AnimationUtils.loadAnimation(this, R.anim.faden)
         binding.homeSite.startAnimation(animationFading)
         //fasdfasdf
+        //rrrrrr
     }
 
     private fun goToGames() {
