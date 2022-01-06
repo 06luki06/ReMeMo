@@ -13,7 +13,7 @@ class ContextHelper(context : Context) : AppCompatActivity(){
         val intent = Intent(con, c)
 
         if(finish){
-            finish()
+            finishAndRemoveTask()
         }
 
         if(flag == true){
@@ -23,9 +23,12 @@ class ContextHelper(context : Context) : AppCompatActivity(){
         powerIntent(intent)
     }
 
-    fun gameIntent(game : String, c : Class<*>){
+    fun gameIntent(game : String, c : Class<*>, c2 : Class<*>?){
         val intent = Intent(con, c)
         intent.putExtra("game", game)
+        if(c2 != null){
+            intent.putExtra("level", c2)
+        }
         powerIntent(intent)
     }
 

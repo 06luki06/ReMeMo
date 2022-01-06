@@ -8,6 +8,7 @@ import com.example.rememo.R
 import com.example.rememo.databinding.PauseScreenBinding
 import com.example.rememo.games.GameChoice
 import com.example.rememo.games.helperClasses.ContextHelper
+import com.example.rememo.games.helperClasses.DialogHelper
 import com.example.rememo.games.howtoplay.HowToPlayMemory
 import com.example.rememo.games.howtoplay.HowToPlayMotivity
 import com.example.rememo.games.howtoplay.HowToPlayReaction
@@ -17,6 +18,8 @@ class Pause : AppCompatActivity(){
 
     private lateinit var bindingPause : PauseScreenBinding
     private var contextHelper = ContextHelper(this)
+    private val dialogHelper = DialogHelper(this)
+    private lateinit var level : Class<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,7 @@ class Pause : AppCompatActivity(){
         setContentView(bindingPause.root)
 
         val game : String? = intent.getStringExtra("game")
+        level = intent.getSerializableExtra("level") as Class<*>
 
         bindingPause.iBGoToHowToPlay.setOnClickListener{ goToHowToPlay(game)}
         bindingPause.iBPauseSettings.setOnClickListener{goToSettings()}
@@ -57,15 +61,6 @@ class Pause : AppCompatActivity(){
     }
 
     private fun restartGame(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Level neustarten")
-        builder.setMessage("Willst du wirklich das Level neustarten?")
-        builder.setPositiveButton(R.string.yes) { _, _ ->
-            Toast.makeText(applicationContext, "UNDER CONSTRUCTION", Toast.LENGTH_LONG).show()
-        }.show()
-
-        builder.setNegativeButton(R.string.no) {_, _->
-            onBackPressed()
-        }.show()
+        dialogHelper.restartLevel("wüst neistarten, du wappla?", "wiakli?", "yes","no", level)
     }
 }

@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
 import com.example.rememo.games.gamechoices.MemoryGame
 import com.example.rememo.games.helperClasses.ContextHelper
+import com.example.rememo.games.helperClasses.DialogHelper
 import com.example.rememo.games.pauseScreens.Pause
 
 class MemoryGameEngine(context: Context) : AppCompatActivity() {
@@ -17,6 +17,7 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
     private var result: String = ""
     private var resultInput : String = ""
     private lateinit var mp : MediaPlayer
+    private val dialogHelper = DialogHelper(con)
 
     private fun selectRandomButtons(buttonchoice: Array<String>, howMuch : Int): ArrayList<String> {
         var randomNumber: Int
@@ -46,24 +47,13 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
         mp.setVolume(min.toFloat(), max.toFloat())
     }
 
-    fun compareResults(writeIntoSP : String, c : Class<*>, title : String){
+    private fun compareResults(writeIntoSP : String, c : Class<*>, title : String){
         if(result == resultInput){
             mp.start()
-            val builder = AlertDialog.Builder(con)
-            builder.setTitle(title)
-            builder.setMessage("Great, you have nailed it!")
-            builder.setNeutralButton("Back To Games"){_, _ ->
-                contextHelper.startIntent(MemoryGame::class.java, true, flag = false)
-                writeIntoSharedPrefs(writeIntoSP)
-            }.show()
-
+            writeIntoSharedPrefs(writeIntoSP)
+            dialogHelper.levelPassed(title, "You passed this level", "go back to the game choice", MemoryGame::class.java)
         }else{
-            val builder = AlertDialog.Builder(con)
-            builder.setTitle(title)
-            builder.setMessage("You are a noob, try again")
-            builder.setNeutralButton("Retry"){_, _ ->
-                contextHelper.startIntent(c, true, flag = false)
-            }.show()
+            dialogHelper.levelFailed(title, "You're noob try again", "Retry", c)
         }
     }
 
@@ -94,13 +84,13 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
         }
     }
 
-    fun deactivate(buttonArray : ArrayList<Button>){
+    private fun deactivate(buttonArray : ArrayList<Button>){
         for (i in 0 until buttonArray.size ) {
             buttonArray[i].setOnClickListener {}
         }
     }
 
-    fun goToPause() {
-        contextHelper.gameIntent("memory", Pause::class.java)
+    fun goToPause(c : Class<*>) {
+        contextHelper.gameIntent("memory", Pause::class.java, c)
     }
 }
