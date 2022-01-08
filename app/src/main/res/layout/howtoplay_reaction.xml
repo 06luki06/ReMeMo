@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LL_howToPlay_Reaction"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <TextView
@@ -15,24 +16,35 @@
         android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="@string/tV_howToPlay_headline"
-        android:textSize="30sp" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp" />
 
     <TextView
-        android:id="@+id/tV_howToPlay_game_reaction"
+        android:id="@+id/tV_howToPlay_game_Reaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
+        android:fontFamily="@font/fontdiner_swanky"
         android:gravity="center"
         android:text="@string/tV_howToPlay_reaction"
-        android:textSize="25sp" />
+        android:textColor="#FFFFFF"
+        android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/tV_howToPlay_reaction_instruction"
-        android:layout_width="wrap_content"
+        android:id="@+id/tV_howToPlay_Reaction_instruction"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/germania_one"
         android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
         android:text="@string/tV_howToPlay_Reaction_Instruction"
-        android:textSize="20sp" />
+        android:textColor="#403F3F"
+        android:textSize="30sp" />
 </LinearLayout>

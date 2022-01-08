@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="fill_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/reaction_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/background"
         android:orientation="vertical">
 
         <LinearLayout
@@ -17,11 +18,14 @@
             <ImageButton
                 android:id="@+id/iB_HighscoreLink_lvls_reaction"
                 android:layout_width="15dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#5A606A"
+                android:background="@drawable/roundedcornertopleft"
                 android:contentDescription="@string/cD_iB_goToHighscore"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/withhook" />
 
             <TextView
                 android:id="@+id/tV_Placeholder"
@@ -33,11 +37,12 @@
             <ImageButton
                 android:id="@+id/iB_HowToPlayReaction"
                 android:layout_width="15dp"
-                android:layout_height="60dp"
+                android:layout_height="75dp"
                 android:layout_weight="1"
-                android:background="#5A606A"
+                android:background="@drawable/roundedcornertopright"
                 android:contentDescription="@string/cD_IB_goToHowToPlayReaction"
-                app:srcCompat="@android:drawable/ic_dialog_info" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/info" />
 
         </LinearLayout>
 
@@ -47,54 +52,71 @@
             android:layout_height="82dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="50dp"
+            android:fontFamily="@font/fontdiner_swanky"
             android:gravity="center"
             android:text="@string/tV_reaction_game"
-            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/bt_reaction_lv1"
+            android:id="@+id/btReactionLv1"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
             android:text="@string/bt_lv1" />
 
         <Button
-            android:id="@+id/bt_reaction_lv2"
+            android:id="@+id/btReactionLv2"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
             android:text="@string/bt_lv2" />
 
         <Button
-            android:id="@+id/bt_reaction_lv3"
+            android:id="@+id/btReactionLv3"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
             android:text="@string/bt_lv3" />
 
         <Button
-            android:id="@+id/bt_reaction_lv4"
+            android:id="@+id/btReactionLv4"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
             android:text="@string/bt_lv4" />
 
         <Button
-            android:id="@+id/bt_reaction_lv5"
+            android:id="@+id/btReactionLv5"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
             android:text="@string/bt_lv5" />
 
     </LinearLayout>

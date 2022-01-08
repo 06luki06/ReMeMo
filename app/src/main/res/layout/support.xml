@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LL_support"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <TextView
@@ -14,7 +15,9 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/tV_support_headline"
-        android:textSize="30sp" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/bt_mail_markus"
@@ -29,6 +32,8 @@
         android:paddingBottom="10dp"
         android:text="@string/bT_mail_markus"
         android:textAllCaps="false"
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#403F3F"
         android:textSize="14sp" />
 
     <Button
@@ -44,6 +49,8 @@
         android:paddingBottom="10dp"
         android:text="@string/bt_mail_vanessa"
         android:textAllCaps="false"
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#403F3F"
         android:textSize="14sp" />
 
     <Button
@@ -59,5 +66,7 @@
         android:paddingBottom="10dp"
         android:text="@string/bT_mail_lukas"
         android:textAllCaps="false"
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#403F3F"
         android:textSize="14sp" />
 </LinearLayout>

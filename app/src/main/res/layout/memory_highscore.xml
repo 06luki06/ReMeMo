@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <TextView
@@ -13,7 +14,9 @@
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:text="@string/bt_Memory"
-        android:textSize="30sp" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp" />
 
     <LinearLayout
         android:id="@+id/ll_memoryhs_lvl1"
@@ -31,6 +34,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/bt_lv1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:textSize="20dp" />
 
         <ImageView
@@ -57,6 +62,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/bt_lv2"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:textSize="20dp" />
 
         <ImageView
@@ -83,6 +90,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/bt_lv3"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:textSize="20dp" />
 
         <ImageView
@@ -109,6 +118,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/bt_lv4"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:textSize="20dp" />
 
         <ImageView
@@ -135,6 +146,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/bt_lv5"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:textSize="20dp" />
 
         <ImageView

@@ -5,6 +5,7 @@
     android:id="@+id/highscore_games"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,11 +15,14 @@
         <ImageButton
             android:id="@+id/iB_HighscoreLink"
             android:layout_width="15dp"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#5A606A"
+            android:background="@drawable/roundedcornertopleft"
             android:contentDescription="@string/cD_iB_goToHighscore"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/withhook" />
 
         <TextView
             android:id="@+id/tV_Placeholder"
@@ -30,11 +34,12 @@
         <ImageButton
             android:id="@+id/iB_SettingsLink"
             android:layout_width="15dp"
-            android:layout_height="60dp"
+            android:layout_height="75dp"
             android:layout_weight="1"
-            android:background="#5A606A"
+            android:background="@drawable/roundedcornertopright"
             android:contentDescription="@string/cD_iB_goToSettings"
-            app:srcCompat="@android:drawable/ic_menu_manage" />
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/settings" />
 
     </LinearLayout>
 
@@ -44,9 +49,11 @@
         android:layout_height="82dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
+        android:fontFamily="@font/fontdiner_swanky"
         android:gravity="center"
         android:text="@string/tv_headlingGameChoice"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
         android:visibility="visible" />
 
     <Button
@@ -56,7 +63,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Memory" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Memory"
+        android:textColor="#403F3F"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/bt_goToReaction"
@@ -65,7 +75,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Reaction" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Reaction"
+        android:textColor="#403F3F"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/bt_goToMotivity"
@@ -74,6 +87,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Motivity" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Motivity"
+        android:textColor="#403F3F"
+        android:textSize="20sp" />
 
 </LinearLayout>

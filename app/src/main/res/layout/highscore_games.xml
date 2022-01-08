@@ -5,6 +5,7 @@
     android:id="@+id/highscore_games"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <TextView
@@ -13,9 +14,11 @@
         android:layout_height="82dp"
         android:layout_marginTop="90dp"
         android:layout_marginBottom="25dp"
+        android:fontFamily="@font/fontdiner_swanky"
         android:gravity="center"
         android:text="@string/tV_headline_highscore_games"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
         android:visibility="visible" />
 
     <TextView
@@ -25,8 +28,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="50dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/germania_one"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
         android:text="@string/tV_highscore_games_infoTxt"
-        android:textSize="20sp" />
+        android:textColor="#403F3F"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/bt_highscore_memory"
@@ -35,7 +45,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Memory" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Memory"
+        android:textColor="#403F3F" />
 
     <Button
         android:id="@+id/bt_higscore_reaction"
@@ -44,7 +56,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Reaction" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Reaction"
+        android:textColor="#403F3F" />
 
     <Button
         android:id="@+id/bt_highscore_motivity"
@@ -53,6 +67,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/bt_Motivity" />
+        android:fontFamily="@font/fontdiner_swanky"
+        android:text="@string/bt_Motivity"
+        android:textColor="#403F3F" />
 
 </LinearLayout>

@@ -32,7 +32,7 @@ class MemoryGame : AppCompatActivity(){
 
         val lvls : ArrayList<Button> = arrayListOf(lvl1, lvl2, lvl3, lvl4, lvl5)
         for(i in lvls){
-            i.setBackgroundColor(Color.RED)
+            i.setBackgroundColor(Color.parseColor("#FF3030"))
         }
 
         gameChoice.retrieveSharedPreferences(lvls, "memory")

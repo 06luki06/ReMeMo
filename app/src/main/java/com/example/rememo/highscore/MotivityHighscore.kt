@@ -30,7 +30,7 @@ class MotivityHighscore : AppCompatActivity(){
 
         val llArray : ArrayList<LinearLayout> = arrayListOf(llLvl1,llLvl2,llLvl3,llLvl4,llLvl5)
         for(i in llArray){
-            i.setBackgroundColor(Color.RED)
+            i.setBackgroundColor(Color.parseColor("#FF3030"))
         }
 
         val ivLvl1: ImageView = bindingMotivityHighscore.ivMotivityHighscoreLv1

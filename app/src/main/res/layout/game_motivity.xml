@@ -1,96 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/motivity_game"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
+        android:id="@+id/motivity_game"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/iB_HighscoreLink_lvls_motivity"
-            android:layout_width="15dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:background="#5A606A"
-            android:contentDescription="@string/cD_iB_goToHighscore"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/iB_HighscoreLink_lvls_motivity"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/roundedcornertopleft"
+                android:contentDescription="@string/cD_iB_goToHighscore"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/withhook" />
+
+            <TextView
+                android:id="@+id/tV_Placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/tV_placeholder" />
+
+            <ImageButton
+                android:id="@+id/iB_HowToPlayMotivity"
+                android:layout_width="15dp"
+                android:layout_height="75dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundedcornertopright"
+                android:contentDescription="@string/cD_iB_goToHowToPlayMotivity"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/info" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tV_Placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/tV_placeholder" />
+            android:id="@+id/tv_motivity_game"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:gravity="center"
+            android:text="@string/tV_memory_game"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            android:visibility="visible" />
 
-        <ImageButton
-            android:id="@+id/iB_HowToPlayMotivity"
-            android:layout_width="15dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:background="#5A606A"
-            android:contentDescription="@string/cD_iB_goToHowToPlayMotivity"
-            app:srcCompat="@android:drawable/ic_dialog_info" />
+        <Button
+            android:id="@+id/btMotivityLv1"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
+            android:text="@string/bt_lv1" />
+
+        <Button
+            android:id="@+id/btMotivityLv2"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
+            android:text="@string/bt_lv2" />
+
+        <Button
+            android:id="@+id/btMotivityLv3"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
+            android:text="@string/bt_lv3" />
+
+        <Button
+            android:id="@+id/btMotivityLv4"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
+            android:text="@string/bt_lv4" />
+
+        <Button
+            android:id="@+id/btMotivityLv5"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
+            android:textSize="20sp"
+            android:text="@string/bt_lv5" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_motivity_game"
-        android:layout_width="match_parent"
-        android:layout_height="82dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:text="@string/tV_motivity_game"
-        android:textSize="30sp"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/bt_motivity_lv1"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/bt_lv1" />
-
-    <Button
-        android:id="@+id/bt_motivity_lv2"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/bt_lv2" />
-
-    <Button
-        android:id="@+id/bt_motivity_lv3"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/bt_lv3" />
-
-    <Button
-        android:id="@+id/bt_motivity_lv4"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/bt_lv4" />
-
-    <Button
-        android:id="@+id/bt_motivity_lv5"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/bt_lv5" />
-
-</LinearLayout>
+</ScrollView>
