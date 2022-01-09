@@ -17,9 +17,10 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="start"
-            android:background="#5A606A"
+            android:background="@drawable/roundedcornertopleft"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="#403F3F"
+            android:fontFamily="@font/fontdiner_swanky"
             android:textSize="25sp" />
 
         <ImageButton
@@ -27,9 +28,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="end"
-            android:background="#5A606A"
+            android:background="@drawable/roundedcornertopright"
             android:contentDescription="@string/cD_iB_goToPauseScreen"
-            app:srcCompat="@android:drawable/ic_media_pause" />
+            app:srcCompat="@drawable/pause" />
 
     </FrameLayout>
 
@@ -40,7 +41,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/texfieldbackground"
+        android:fontFamily="@font/fontdiner_swanky"
         android:gravity="center"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -55,17 +57,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/textfieldrememo"
+        android:fontFamily="@font/fontdiner_swanky"
+        android:gravity="center"
         android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/tV_catched_Flies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/fontdiner_swanky"
                 android:layout_gravity="end"
+                android:textSize="20sp"
                 android:text="@string/tV_flies_left" />
 
             <FrameLayout
@@ -73,20 +82,24 @@
                 android:layout_width="50dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center_vertical"
-                android:background="#5A606A">
+                android:background="#403F3F">
 
             </FrameLayout>
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/tV_time_Left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/fontdiner_swanky"
                 android:layout_gravity="end"
+                android:textSize="20sp"
                 android:text="@string/tV_time_left" />
 
             <FrameLayout
@@ -94,7 +107,7 @@
                 android:layout_width="50dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center_vertical"
-                android:background="#5A606A">
+                android:background="#403F3F">
 
             </FrameLayout>
         </FrameLayout>

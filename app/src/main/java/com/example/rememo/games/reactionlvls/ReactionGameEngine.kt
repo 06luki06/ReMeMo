@@ -67,9 +67,11 @@ class ReactionGameEngine(context : Context) : AppCompatActivity(){
         }.show()
     }
 
-    fun fullScreen(window : Window, prefs: SharedPreferences) {
+    fun fullScreen(window : Window, prefs: SharedPreferences?) {
         clapping = MediaPlayer.create(con, R.raw.clapping)
-        setSound(prefs)
+        if (prefs != null) {
+            setSound(prefs)
+        }
         val win = window
         val decorView = win.decorView
         val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -93,9 +95,7 @@ class ReactionGameEngine(context : Context) : AppCompatActivity(){
             .apply()
     }
 
-    fun endPause(): Boolean {
-        return dialogHelper.continueGame("level 1", "wüsst wiakli weita doa?", "jo")
-    }
+
 
     override fun onDestroy(){
         clapping.release()

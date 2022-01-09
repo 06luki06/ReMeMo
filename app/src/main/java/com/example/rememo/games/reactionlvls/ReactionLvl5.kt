@@ -164,6 +164,7 @@ class ReactionLvl5 : AppCompatActivity(), View.OnClickListener, Runnable {
         isPaused = false
         caughtFlies++
         fliesToHit--
+        gameEngine.fullScreen(window,null)
         updateScreen()
         gameboard.removeView(v)
         sum.pause()

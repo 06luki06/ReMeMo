@@ -3,6 +3,8 @@ package com.example.rememo.games.memorylvls
 import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
+import android.view.View
+import android.view.Window
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
@@ -93,4 +95,14 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
     fun goToPause(c : Class<*>) {
         contextHelper.gameIntent("memory", Pause::class.java, c)
     }
+
+
+    fun fullScreen(window : Window) {
+        val win = window
+        val decorView = win.decorView
+        val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        decorView.systemUiVisibility = uiOptions
+    }
+
+
 }

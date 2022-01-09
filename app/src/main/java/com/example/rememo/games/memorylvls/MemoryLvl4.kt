@@ -31,6 +31,7 @@ class MemoryLvl4 : AppCompatActivity(){
 
         val prefs : SharedPreferences = getSharedPreferences("Soundsettings", 0)
         gameEngine.setSound(prefs)
+        gameEngine.fullScreen(window)
 
         result = gameEngine.saveAsString(buttonChoice, howMuch)
 

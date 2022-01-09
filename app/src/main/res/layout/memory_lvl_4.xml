@@ -13,16 +13,20 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="end"
-        android:background="#5A606A"
+        android:background="@drawable/roundedcornertopright"
         android:contentDescription="@string/cD_iB_goToPauseScreen"
-        app:srcCompat="@android:drawable/ic_media_pause" />
+        app:srcCompat="@drawable/pause" />
 
     <TextView
         android:id="@+id/tV_memory_Lvl_4"
         android:layout_width="match_parent"
         android:layout_height="82dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="50dp"
+        android:background="@drawable/texfieldbackground"
+        android:fontFamily="@font/fontdiner_swanky"
         android:gravity="center"
         android:text="@string/bt_lv4"
         android:textSize="30sp" />
@@ -41,6 +45,8 @@
             android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_1" />
 
         <Button
@@ -49,6 +55,8 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_2" />
     </LinearLayout>
 
@@ -66,6 +74,8 @@
             android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_3" />
 
         <Button
@@ -74,6 +84,8 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_4" />
     </LinearLayout>
 
@@ -91,6 +103,8 @@
             android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_5" />
 
         <Button
@@ -99,6 +113,8 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_6" />
     </LinearLayout>
 
@@ -116,6 +132,8 @@
             android:layout_height="60dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_7" />
 
         <Button
@@ -124,17 +142,21 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/fontdiner_swanky"
+            android:textColor="#403F3F"
             android:text="@string/bt_memory_8" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tV_memory_lv4_Numbers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:fontFamily="casual"
-        android:gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/texfieldbackground"
+        android:fontFamily="@font/germania_one"
+        android:gravity="center"
         android:text="@string/tV_memory_lv1_nextNumber"
         android:textSize="25sp" />
 </LinearLayout>
