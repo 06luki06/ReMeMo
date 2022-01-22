@@ -43,10 +43,5 @@ class MemoryHighscore: AppCompatActivity() {
         val ivArray : ArrayList<ImageView> = arrayListOf(ivLvl1,ivLvl2,ivLvl3,ivLvl4,ivLvl5)
 
         highscorehelper.retrieveSharedPreferences(llArray,ivArray,"memory")
-
     }
-
-
-
-
 }

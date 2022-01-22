@@ -20,6 +20,7 @@ class Motivity_lvl3 : AppCompatActivity(){
 
         bindingMotivity_lvl3.iBPauseScreen.setOnClickListener{goToPause()}
     }
+    //TODO: has to be implemented
 
     private fun goToPause(){
 

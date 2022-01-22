@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rememo.R
 import com.example.rememo.databinding.SupportBinding
 
 class Support : AppCompatActivity(){
@@ -54,7 +55,7 @@ class Support : AppCompatActivity(){
             startActivity(intent)
         }catch (e: ActivityNotFoundException){
             Toast.makeText(
-                applicationContext, "Mail konnte nicht gesendet werden", Toast.LENGTH_LONG).show()
+                applicationContext, getText(R.string.activityNotFound), Toast.LENGTH_LONG).show()
         }
     }
 }

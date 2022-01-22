@@ -6,7 +6,7 @@
     <string name="cD_iB_goToHighscore">go to highscore</string>
     <string name="cD_iB_goToSettings">go to settings</string>
     <string name="tv_headlingGameChoice">Games</string>
-    <string name="bt_Memory">Memory</string>
+    <string name="bt_Memory">ReMeMo says</string>
     <string name="bt_Reaction">Reaction</string>
     <string name="bt_Motivity">Motivity</string>
     <string name="tV_headline_highscore_games">Highscore Games</string>
@@ -75,4 +75,15 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="allLevelsPassedMessage">Great, you have passed all leveles. Good job!!</string>
+    <string name="activityNotFound">Upps, something went wrong! Pls restart the game. If the error still occurs, contact our team!</string>
+    <string name="TitleALFinished">Good job mate!</string>
+    <string name="MessageRememberALFinished">You are the king of ReMeMo says</string>
+    <string name="playLevelsAgain">Play again</string>
+    <string name="levelPassed">Great, you have nailed this level.</string>
+    <string name="goBack">Game Choice</string>
+    <string name="levelFaild">Ouch, you missed it.</string>
+    <string name="retry">Retry</string>
+    <string name="restartLvlTitle">Restart Level</string>
+    <string name="restartLvlMessage">Do you really want to start over?</string>
+
 </resources>

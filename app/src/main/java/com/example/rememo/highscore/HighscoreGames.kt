@@ -10,6 +10,7 @@ class HighscoreGames : AppCompatActivity(){
 
     private lateinit var bindingHighscoreGames : HighscoreGamesBinding
     private var contextHelper = ContextHelper(this)
+    private var dialogHelper = DialogHelper(this);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,14 +22,9 @@ class HighscoreGames : AppCompatActivity(){
         }
         bindingHighscoreGames.btHigscoreReaction.setOnClickListener{
             contextHelper.startIntent(ReactionHighscore::class.java,false,flag=false)
-    }
+        }
         bindingHighscoreGames.btHighscoreMotivity.setOnClickListener {
-            contextHelper.startIntent(MotivityHighscore::class.java,false,flag=false)
-
+            dialogHelper.notYetImplemented("Go Back")
+        }
     }
-
-
-
-
-
-}}
+}

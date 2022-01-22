@@ -50,12 +50,13 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
     }
 
     private fun compareResults(writeIntoSP : String, c : Class<*>, title : String){
+
         if(result == resultInput){
             mp.start()
             writeIntoSharedPrefs(writeIntoSP)
-            dialogHelper.levelPassed(title, "You passed this level", "go back to the game choice", MemoryGame::class.java)
+            dialogHelper.levelPassed(title, "Jippie!", "levels", MemoryGame::class.java)
         }else{
-            dialogHelper.levelFailed(title, "You're noob try again", "Retry", c)
+            dialogHelper.levelFailed(title, "Ooops","Try again!", c)
         }
     }
 
@@ -96,13 +97,10 @@ class MemoryGameEngine(context: Context) : AppCompatActivity() {
         contextHelper.gameIntent("memory", Pause::class.java, c)
     }
 
-
     fun fullScreen(window : Window) {
         val win = window
         val decorView = win.decorView
         val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         decorView.systemUiVisibility = uiOptions
     }
-
-
 }

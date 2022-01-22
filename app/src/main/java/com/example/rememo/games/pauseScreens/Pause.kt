@@ -61,6 +61,7 @@ class Pause : AppCompatActivity(){
     }
 
     private fun restartGame(){
-        dialogHelper.restartLevel("wüst neistarten, du wappla?", "wiakli?", "yes","no", level)
+        dialogHelper.restartLevel("Restart","Really?",
+            "jep", "nope", level)
     }
 }

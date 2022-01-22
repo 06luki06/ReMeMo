@@ -76,4 +76,15 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="allLevelsPassedMessage">"Great, you have passed all leveles. Good job!!"</string>
+    <string name="activityNotFound">Upps, something went wrong! Pls restart the game. If the error still occurs, contact our team!</string>
+    <string name="TitleALFinished">Good job!</string>
+    <string name="MessageRememberALFinished">You are the king of ReMeMo says</string>
+    <string name="playLevelsAgain">Play again</string>
+    <string name="levelPassed">Great, you have nailed this level.</string>
+    <string name="goBack">Game Choice</string>
+    <string name="levelFaild">Ouch, you missed it.</string>
+    <string name="retry">Retry</string>
+    <string name="restartLvlTitle">Restart Level</string>
+    <string name="restartLvlMessage">Do you really want to start over?</string>
+
 </resources>

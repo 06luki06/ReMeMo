@@ -5,14 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.rememo.R
 
 class ContextHelper(context : Context) : AppCompatActivity(){
     private val con = context
 
     fun startIntent(c : Class<*>, finish : Boolean, flag : Boolean?){
         val intent = Intent(con, c)
-
-
 
         if(flag == true){
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -38,7 +37,7 @@ class ContextHelper(context : Context) : AppCompatActivity(){
             con.startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(
-                con, "Aktivität konnte nicht weitergegeben werden", Toast.LENGTH_LONG).show()
+                con, getText(R.string.activityNotFound), Toast.LENGTH_LONG).show()
         }
     }
 }

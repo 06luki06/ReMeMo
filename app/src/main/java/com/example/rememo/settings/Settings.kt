@@ -123,9 +123,9 @@ class Settings : AppCompatActivity(){
         val reactionSP : SharedPreferences = getSharedPreferences("Levels_Reaction", 0)
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Hawara")
-        builder.setMessage("Wüsst wiakli ois leschn?")
-        builder.setPositiveButton("LÖSCHE ALLES"){_, _ ->
+        builder.setTitle("Reset Game")
+        builder.setMessage("DELET EVERYTHING?")
+        builder.setPositiveButton("Jep"){_, _ ->
             memorySP
                 .edit()
                 .clear()
@@ -138,7 +138,7 @@ class Settings : AppCompatActivity(){
             contextHelper.startIntent(StartScreen::class.java, true, flag = true)
         }.show()
 
-        builder.setNegativeButton("Ne doch nicht"){_, _ ->
+        builder.setNegativeButton("Nope"){_, _ ->
             onBackPressed()
         }.show()
     }

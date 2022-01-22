@@ -41,7 +41,7 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton(yes) { _, _ ->
-            contextHelper.startIntent(c, false, flag = true)
+            contextHelper.startIntent(c, true, flag = true)
         }.show()
 
         builder.setNegativeButton(no) { _, _->
@@ -49,16 +49,11 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         }.show()
     }
 
-    fun continueGame(title : String, message : String, button : String) : Boolean{
-        var pauseFinished : Boolean = true
+    fun notYetImplemented(goBack : String){
         val builder = AlertDialog.Builder(con)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setPositiveButton(button) { dialog, _ ->
+        builder.setMessage("Coming soon!")
+        builder.setPositiveButton(goBack){dialog, _ ->
             dialog.dismiss()
-            pauseFinished = false
         }.show()
-
-        return pauseFinished
     }
 }

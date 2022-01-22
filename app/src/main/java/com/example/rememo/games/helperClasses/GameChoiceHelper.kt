@@ -64,7 +64,7 @@ class GameChoiceHelper(context : Context) : AppCompatActivity() {
             if (preferences.getString("lvl_5_checked", "false").equals("true")) {
                 lvlDesign.lvlMastered(lvls[4])
                 activateLvl(5, lvls[4])
-                dialogHelper.levelsCompleted("Good job!", "good job guy", "play levels again")
+                dialogHelper.levelsCompleted("Great", "Levels completed!", "play again")
                 mp.start()
             }
         }
