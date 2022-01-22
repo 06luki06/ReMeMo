@@ -6,6 +6,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rememo.R
+import com.example.rememo.games.GameChoice
 
 class ContextHelper(context : Context) : AppCompatActivity(){
     private val con = context
@@ -27,6 +28,12 @@ class ContextHelper(context : Context) : AppCompatActivity(){
             intent.putExtra("level", c2)
         }
         powerIntent(intent,finish = false)
+    }
+
+    fun goToGames(name : String){
+        val intent = Intent(con, GameChoice::class.java)
+        intent.putExtra("NameOfPlayer", name)
+        powerIntent(intent, true)
     }
 
     private fun powerIntent(intent : Intent, finish: Boolean){

@@ -20,8 +20,6 @@ class MotivityHighscore : AppCompatActivity(){
         bindingMotivityHighscore = MotivityHighscoreBinding.inflate(layoutInflater)
         setContentView(bindingMotivityHighscore.root)
 
-        val prefs : SharedPreferences = getSharedPreferences("Levels_Motivity",0)
-
         val llLvl1 : LinearLayout = bindingMotivityHighscore.llMotivityLvl1
         val llLvl2 : LinearLayout = bindingMotivityHighscore.llMotivityLvl2
         val llLvl3 : LinearLayout = bindingMotivityHighscore.llMotivityLvl3

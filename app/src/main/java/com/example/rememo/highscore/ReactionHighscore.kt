@@ -20,8 +20,6 @@ class ReactionHighscore: AppCompatActivity() {
         bindingReactionHighscore = ReactionHighscoreBinding.inflate(layoutInflater)
         setContentView(bindingReactionHighscore.root)
 
-        val prefs : SharedPreferences = getSharedPreferences("Levels_Reaction",0)
-
         val llLvl1 : LinearLayout = bindingReactionHighscore.llReactionLvl1
         val llLvl2 : LinearLayout = bindingReactionHighscore.llReactionLvl2
         val llLvl3 : LinearLayout = bindingReactionHighscore.llReactionLvl3

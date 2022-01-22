@@ -53,6 +53,7 @@ class Pause : AppCompatActivity(){
     }
 
     private fun goToGameChoice(){
+        finish()
         contextHelper.startIntent(GameChoice::class.java, true, flag = true)
     }
 

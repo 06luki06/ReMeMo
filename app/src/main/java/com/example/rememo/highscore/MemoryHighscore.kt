@@ -21,7 +21,6 @@ class MemoryHighscore: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingMemoryHighscore = MemoryHighscoreBinding.inflate(layoutInflater)
         setContentView(bindingMemoryHighscore.root)
-        val prefs : SharedPreferences = getSharedPreferences("Levels_Memory",0)
 
         val llLvl1 : LinearLayout = bindingMemoryHighscore.llMemoryhsLvl1
         val llLvl2 : LinearLayout = bindingMemoryHighscore.llMemoryhsLvl2

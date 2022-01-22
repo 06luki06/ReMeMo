@@ -23,6 +23,7 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton(button){_, _ ->
+            finish()
             contextHelper.startIntent(c, true, flag = false)
         }.show()
     }
@@ -32,6 +33,7 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setNegativeButton(button){_, _ ->
+            finish()
             contextHelper.startIntent(c, true, flag = true)
         }.show()
     }
@@ -41,11 +43,12 @@ class DialogHelper(context : Context) : AppCompatActivity(){
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton(yes) { _, _ ->
+            finish()
             contextHelper.startIntent(c, true, flag = true)
         }.show()
 
-        builder.setNegativeButton(no) { _, _->
-            onBackPressed()
+        builder.setNegativeButton(no) { dialog, _->
+            dialog.dismiss()
         }.show()
     }
 

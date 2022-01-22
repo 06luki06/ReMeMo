@@ -48,7 +48,4 @@ private val con= context
             }
         }
     }
-
-
-
 }
